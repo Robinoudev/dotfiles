@@ -8,12 +8,13 @@
       nixos-hardware.url = "github:nixos/nixos-hardware";
     };
 
-  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, ...}: 
+  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, nixos-hardware, ...}:
     {
       nixosConfigurations.thinkpad = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./configuration.nix
+          nixos-hardware.nixosModules.lenovo-thinkpad-x220
         ];
       };
     };
