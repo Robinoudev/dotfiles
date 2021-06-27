@@ -11,7 +11,7 @@ with lib;
   #   (name -> value -> bool)
   #   (name -> value -> { name = any; value = any; })
   #   attrs
-  mapFiltersAttrs = pred: f: attrs: filterAttrs pred (mapAttrs' f attrs);
+  mapFilterAttrs = pred: f: attrs: filterAttrs pred (mapAttrs' f attrs);
 
  # Generate an attribute set by mapping a function over a list of values.
   genAttrs' = values: f: listToAttrs (map f values);

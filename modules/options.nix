@@ -1,7 +1,14 @@
 { config, options, lib, ... }:
 
 with lib;
+with lib.my;
+
 {
+  options = with types; {
+    user = mkOpt attrs { };
+  };
+
+
   config = {
     user =
       let user = builtins.getEnv "USER";

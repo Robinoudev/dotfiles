@@ -32,7 +32,8 @@
         system = "x86_64-linux";
         modules = [
           nixos-hardware.nixosModules.lenovo-thinkpad-x220
-          ./configuration.nix
+          ./default.nix
+          (import ./modules)
         ];
         specialArgs = { inherit lib inputs; };
       };

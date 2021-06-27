@@ -6,11 +6,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
       ./hardware-configuration.nix
-      ./modules/editors/emacs.nix
-      ./modules/browsers/firefox.nix
-      # ./modules/options.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -107,10 +104,10 @@
 
   environment.variables.NIXPKGS_ALLOW_UNFREE = "1";
 
-  # nix.package = pkgs.nixUnstable;
-  # nix.extraOptions = ''
-  #   experimental-features = nix-command flakes
-  # '';
+  nix.package = pkgs.nixUnstable;
+  nix.extraOptions = ''
+    experimental-features = nix-command flakes
+  '';
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
