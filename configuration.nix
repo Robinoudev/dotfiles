@@ -10,13 +10,15 @@
       ./hardware-configuration.nix
       ./modules/editors/emacs.nix
       ./modules/browsers/firefox.nix
+      # ./modules/options.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.hostName = "nixos"; # Define your hostname.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
@@ -105,10 +107,10 @@
 
   environment.variables.NIXPKGS_ALLOW_UNFREE = "1";
 
-  nix.package = pkgs.nixUnstable;
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes
-  '';
+  # nix.package = pkgs.nixUnstable;
+  # nix.extraOptions = ''
+  #   experimental-features = nix-command flakes
+  # '';
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

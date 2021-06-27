@@ -1,4 +1,4 @@
-{ config, options, lib, home-manager, ... }:
+{ config, options, lib, ... }:
 
 with lib;
 {
@@ -15,16 +15,6 @@ with lib;
         group = "users";
         uid = 1000;
       };
-
-    home-manager = {
-      home = {
-        useUserPackages = true;
-        # file = mkAliasDefinitions options.home.file;
-        # Necessary for home-manager to work with flakes, otherwise it will
-        # look for a nixpkgs channel.
-        stateVersion = config.system.stateVersion;
-      };
-    };
 
     nix = let users = [ "root" config.user.name ]; in {
       trustedUsers = users;

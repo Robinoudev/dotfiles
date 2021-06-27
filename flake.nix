@@ -9,13 +9,32 @@
     };
 
   outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, nixos-hardware, ...}:
-    {
+    let
+      inherit (lib) attrValues;
+      inherit (lib.my) mapModules mapModulesRec mapHosts;
+
+      mkPkgs = pkgs:
+        import pkgs {
+          config.allowUnfree = true;
+        };
+      pkgs = mkPkgs nixpkgs;
+
+      lib = nixpkgs.lib.extend (self: super: {
+        my = import ./lib {
+          inherit pkgs inputs;
+          lib = self;
+        };
+      });
+    in {
+      lib = lib.my;
+
       nixosConfigurations.thinkpad = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./configuration.nix
           nixos-hardware.nixosModules.lenovo-thinkpad-x220
+          ./configuration.nix
         ];
+        specialArgs = { inherit lib inputs; };
       };
     };
 }
