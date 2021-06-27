@@ -35,6 +35,7 @@
         modules = [
           nixos-hardware.nixosModules.lenovo-thinkpad-x220
           ./default.nix
+          ./hosts/thinkpad/default.nix
           (import ./modules)
         ];
         specialArgs = { inherit lib inputs; };
