@@ -11,7 +11,6 @@ with lib;
       inputs.home-manager.nixosModules.home-manager
     ];
 
-  # TODO: config.dotfiles does not exist
   environment.variables.DOTFILES = config.dotfiles.dir;
   environment.variables.DOTFILES_BIN = config.dotfiles.binDir;
 
