@@ -1,9 +1,10 @@
-{ config, lib, pkgs, modulesPath, ... }:
+{ config, lib, inputs, pkgs, modulesPath, ... }:
 
 {
   imports =
     [
       (modulesPath + "/installer/scan/not-detected.nix")
+      inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x220
     ];
 
   boot.initrd.availableKernelModules = [ "ehci_pci" "ahci" "usb_storage" "sd_mod" "sdhci_pci" ];

@@ -1,9 +1,13 @@
-{ config, pkgs, lib, ... }:
-
-with lib;
-with lib.my;
+{ ... }:
 {
   imports = [./hardware-configuration.nix];
+
+  modules = {
+    shell = {
+      tmux.enable = true;
+      zsh.enable = true;
+    };
+  };
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.

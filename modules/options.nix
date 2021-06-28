@@ -24,6 +24,16 @@ with lib.my;
       configFile = mkOpt' attrs {} "Files to place in $XDG_CONFIG_HOME";
       dataFile   = mkOpt' attrs {} "Files to place in $XDG_DATA_HOME";
     };
+
+    env = mkOption {
+      type = attrsOf (oneOf [ str path (listOf (either str path)) ]);
+      apply = mapAttrs
+        (n: v: if isList v
+               then concatMapStringsSep ":" (x: toString x) v
+               else (toString v));
+      default = {};
+      description = "TODO";
+    };
   };
 
 
@@ -51,6 +61,10 @@ with lib.my;
           # look for a nixpkgs channel.
           stateVersion = config.system.stateVersion;
         };
+        xdg = {
+          configFile = mkAliasDefinitions options.home.configFile;
+          dataFile   = mkAliasDefinitions options.home.dataFile;
+        };
       };
     };
 
@@ -60,5 +74,13 @@ with lib.my;
       trustedUsers = users;
       allowedUsers = users;
     };
+
+    # must already begin with pre-existing PATH. Also, can't use binDir here,
+    # because it contains a nix store path.
+    env.PATH = [ "$DOTFILES_BIN" "$XDG_BIN_HOME" "$PATH" ];
+
+    environment.extraInit =
+      concatStringsSep "\n"
+        (mapAttrsToList (n: v: "export ${n}=\"${v}\"") config.env);
   };
 }

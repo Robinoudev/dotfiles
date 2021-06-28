@@ -2,8 +2,7 @@
 
 with builtins;
 with lib;
-
-{
+rec {
   attrsToList = attrs:
     mapAttrsToList (name: value: { inherit name value; }) attrs;
 

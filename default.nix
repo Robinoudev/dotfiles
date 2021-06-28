@@ -5,11 +5,11 @@
 { config, pkgs, lib, inputs, ... }:
 
 with lib;
+with lib.my;
 {
   imports =
-    [
-      inputs.home-manager.nixosModules.home-manager
-    ];
+    [inputs.home-manager.nixosModules.home-manager]
+    ++ (mapModulesRec' (toString ./modules) import);
 
   environment.variables.DOTFILES = config.dotfiles.dir;
   environment.variables.DOTFILES_BIN = config.dotfiles.binDir;
@@ -48,18 +48,23 @@ with lib;
   ];
 
   environment.variables.NIXPKGS_ALLOW_UNFREE = "1";
+  nix =
+    let filteredInputs = filterAttrs (n: _: n != "self") inputs;
+        nixPathInputs  = mapAttrsToList (n: v: "${n}=${v}") filteredInputs;
+        registryInputs = mapAttrs (_: v: { flake = v; }) filteredInputs;
+    in {
+      package = pkgs.nixFlakes;
+      extraOptions = "experimental-features = nix-command flakes";
+      nixPath = nixPathInputs ++ [
+        "nixpkgs-overlays=${config.dotfiles.dir}/overlays"
+        "dotfiles=${config.dotfiles.dir}"
+      ];
+    };
+  system.configurationRevision = with inputs; mkIf (self ? rev) self.rev;
+  system.stateVersion = "21.05";
 
-  nix.package = pkgs.nixUnstable;
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes
-  '';
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-
-  system.stateVersion = "21.05"; # Did you read the comment?
+  # nix.package = pkgs.nixUnstable;
+  # nix.extraOptions = ''
+  #   experimental-features = nix-command flakes
+  # '';
 }

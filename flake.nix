@@ -10,13 +10,15 @@
       nixos-hardware.url = "github:nixos/nixos-hardware";
     };
 
-  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, nixos-hardware, ...}:
+  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, ...}:
     let
-      inherit (lib) attrValues;
       inherit (lib.my) mapModules mapModulesRec mapHosts;
+
+      system = "x86_64-linux";
 
       mkPkgs = pkgs:
         import pkgs {
+          inherit system;
           config.allowUnfree = true;
         };
       pkgs = mkPkgs nixpkgs;
@@ -30,15 +32,23 @@
     in {
       lib = lib.my;
 
-      nixosConfigurations.thinkpad = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          nixos-hardware.nixosModules.lenovo-thinkpad-x220
-          ./default.nix
-          ./hosts/thinkpad/default.nix
-          (import ./modules)
-        ];
-        specialArgs = { inherit lib inputs; };
-      };
+      nixosModules =
+        { dotfiles = import ./.; } // mapModulesRec ./modules import;
+
+      nixosConfigurations =
+        mapHosts ./hosts {};
+      # nixosConfigurations.thinkpad = nixpkgs.lib.nixosSystem {
+      #   system = "x86_64-linux";
+      #   modules = [
+      #     nixos-hardware.nixosModules.lenovo-thinkpad-x220
+      #     ./default.nix
+      #     ./hosts/thinkpad/default.nix
+      #     (import ./modules)
+      #   ];
+      #   specialArgs = { inherit lib inputs; };
+      # };
+
+      devShell."${system}" =
+        import ./shell.nix { inherit pkgs; };
     };
 }
