@@ -4,6 +4,10 @@ with lib;
 with lib.my;
 
 let cfg = config.modules.shell.tmux;
+    tmux = (pkgs.writeScriptBin "tmux" ''
+      #!${pkgs.stdenv.shell}
+      exec ${pkgs.tmux}/bin/tmux -f "$TMUX_HOME/config" "$@"
+    '');
     configDir = config.dotfiles.configDir;
 in {
   options.modules.shell.tmux = with types; {
@@ -12,12 +16,12 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = [ pkgs.tmux ];
+    user.packages = [ tmux ];
 
     # modules.theme.onReload.tmux = "${tmux}/bin/tmux source-file $TMUX_HOME/extraInit";
 
     modules.shell.zsh = {
-      # rcInit = "_cache tmuxifier init -";
+      rcInit = "_cache tmuxifier init -";
       rcFiles = [ "${configDir}/tmux/aliases.zsh" ];
     };
 

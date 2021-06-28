@@ -3,6 +3,9 @@
   imports = [./hardware-configuration.nix];
 
   modules = {
+    editors = {
+      emacs.enable = true;
+    };
     shell = {
       tmux.enable = true;
       zsh.enable = true;
