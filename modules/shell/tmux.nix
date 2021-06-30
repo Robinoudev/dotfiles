@@ -20,7 +20,7 @@ in {
   config = mkIf cfg.enable {
     user.packages = [ tmux ];
 
-    # modules.theme.onReload.tmux = "${tmux}/bin/tmux source-file $TMUX_HOME/extraInit";
+    modules.theme.onReload.tmux = "${tmux}/bin/tmux source-file $TMUX_HOME/extraInit";
 
     modules.shell.zsh = {
       rcInit = "_cache";

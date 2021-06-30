@@ -26,6 +26,7 @@ with lib.my;
   # Bare necessary packages
   environment.systemPackages = with pkgs; [
     bind
+    cached-nix-shell
     coreutils
     git
     vim 

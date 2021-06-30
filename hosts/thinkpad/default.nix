@@ -15,6 +15,7 @@
       browsers = {
         default = "firefox";
         firefox.enable = true;
+        # qutebrowser.enable = true;
       };
     };
     editors = {
@@ -24,6 +25,7 @@
       tmux.enable = true;
       zsh.enable = true;
     };
+    theme.active = "alucard";
   };
 
   networking.hostName = "nixos"; # Define your hostname.

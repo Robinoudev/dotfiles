@@ -51,5 +51,10 @@
 
       devShell."${system}" =
         import ./shell.nix { inherit pkgs; };
+
+      defaultApp."${system}" = {
+        type = "app";
+        program = ./bin/hey;
+      };
     };
 }
