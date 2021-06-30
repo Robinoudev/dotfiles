@@ -17,12 +17,13 @@
 
       system = "x86_64-linux";
 
-      mkPkgs = pkgs:
-        import pkgs {
-          inherit system;
-          config.allowUnfree = true;
-        };
-      pkgs = mkPkgs nixpkgs;
+      mkPkgs = pkgs: extraOverlays: import pkgs {
+        inherit system;
+        config.allowUnfree = true;  # forgive me Stallman senpai
+        overlays = extraOverlays ++ (lib.attrValues self.overlays);
+      };
+      pkgs  = mkPkgs nixpkgs [ self.overlay ];
+      pkgs' = mkPkgs nixpkgs-unstable [];
 
       lib = nixpkgs.lib.extend (self: super: {
         my = import ./lib {
@@ -33,21 +34,20 @@
     in {
       lib = lib.my;
 
+      overlay =
+        final: prev: {
+          unstable = pkgs';
+          my = self.packages."${system}";
+        };
+
+      overlays =
+        mapModules ./overlays import;
+
       nixosModules =
         { dotfiles = import ./.; } // mapModulesRec ./modules import;
 
       nixosConfigurations =
         mapHosts ./hosts {};
-      # nixosConfigurations.thinkpad = nixpkgs.lib.nixosSystem {
-      #   system = "x86_64-linux";
-      #   modules = [
-      #     nixos-hardware.nixosModules.lenovo-thinkpad-x220
-      #     ./default.nix
-      #     ./hosts/thinkpad/default.nix
-      #     (import ./modules)
-      #   ];
-      #   specialArgs = { inherit lib inputs; };
-      # };
 
       devShell."${system}" =
         import ./shell.nix { inherit pkgs; };

@@ -2,8 +2,10 @@
 
 with lib;
 with lib.my;
-
 let cfg = config.modules.shell.tmux;
+    # Despite tmux/tmux#142, tmux will support XDG in 3.2. Sadly, only 3.0 is
+    # available on nixpkgs, and 3.1b on master (tmux/tmux@15d7e56), so I
+    # implement it myself:
     tmux = (pkgs.writeScriptBin "tmux" ''
       #!${pkgs.stdenv.shell}
       exec ${pkgs.tmux}/bin/tmux -f "$TMUX_HOME/config" "$@"
@@ -21,7 +23,7 @@ in {
     # modules.theme.onReload.tmux = "${tmux}/bin/tmux source-file $TMUX_HOME/extraInit";
 
     modules.shell.zsh = {
-      rcInit = "_cache tmuxifier init -";
+      rcInit = "_cache";
       rcFiles = [ "${configDir}/tmux/aliases.zsh" ];
     };
 
@@ -32,6 +34,7 @@ in {
         run-shell ${pkgs.tmuxPlugins.copycat}/share/tmux-plugins/copycat/copycat.tmux
         run-shell ${pkgs.tmuxPlugins.prefix-highlight}/share/tmux-plugins/prefix-highlight/prefix_highlight.tmux
         run-shell ${pkgs.tmuxPlugins.yank}/share/tmux-plugins/yank/yank.tmux
+
         ${concatMapStrings (path: "source '${path}'\n") cfg.rcFiles}
       '';
     };

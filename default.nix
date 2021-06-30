@@ -23,13 +23,6 @@ with lib.my;
     };
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.robin = {
-    isNormalUser = true;
-    shell = pkgs.zsh;
-    extraGroups = [ "wheel" "networkmanager" "audio" ]; # Enable ‘sudo’ for the user.
-  };
-
   # Bare necessary packages
   environment.systemPackages = with pkgs; [
     bind

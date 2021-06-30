@@ -2,6 +2,7 @@
 source $ZGEN_SOURCE
 if ! zgen saved; then
   echo "Initializing zgen"
+  zgen load hlissner/zsh-autopair autopair.zsh
   zgen load zsh-users/zsh-history-substring-search
   zgen load zdharma/history-search-multi-word
   zgen load zsh-users/zsh-completions src
@@ -43,7 +44,7 @@ if [[ $TERM != dumb ]]; then
 
   ##
   autoload -Uz compinit && compinit -u -d $ZSH_CACHE/zcompdump
-  # autopair-init
+  autopair-init
 
   # If you have host-local configuration, this is where you'd put it
   [ -f ~/.zshrc ] && source ~/.zshrc
