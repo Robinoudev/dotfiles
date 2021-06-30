@@ -8,6 +8,10 @@
         default = "xst";
         st.enable = true;
       };
+      browsers = {
+        default = "firefox";
+        firefox.enable = true;
+      };
     };
     editors = {
       emacs.enable = true;
