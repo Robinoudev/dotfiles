@@ -25,11 +25,17 @@
       tmux.enable = true;
       zsh.enable = true;
     };
+    services = {
+      ssh.enable = true;
+    };
     theme.active = "alucard";
   };
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+
+  programs.ssh.startAgent = true;
+  services.openssh.startWhenNeeded = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
@@ -88,11 +94,6 @@
     enable = true;
   #   enableSSHSupport = true;
   };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
