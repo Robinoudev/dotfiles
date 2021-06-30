@@ -37,3 +37,29 @@ bind C-c send-prefix
 # Vi-style keybinds
 set -g status-keys vi
 set -g mode-keys   vi
+
+########################################
+# Copy mode                            #
+########################################
+
+bind Enter copy-mode # enter copy mode
+bind b list-buffers  # list paster buffers
+bind B choose-buffer # choose which buffer to paste from
+bind p paste-buffer  # paste from the top paste buffer
+bind P run "xclip -selection clipboard -o | tmux load-buffer - ; tmux paste-buffer"
+
+bind -T copy-mode-vi v send-keys -X begin-selection
+bind -T copy-mode-vi C-v send-keys -X rectangle-toggle
+bind -T copy-mode-vi Escape send-keys -X cancel
+bind -T copy-mode-vi C-g send-keys -X cancel
+bind -T copy-mode-vi H send-keys -X start-of-line
+bind -T copy-mode-vi L send-keys -X end-of-line
+
+########################################
+# Local config                         #
+########################################
+set -g @open-editor 'C-e'
+set -g @open-S 'https://www.duckduckgo.com/'
+
+source $TMUX_HOME/extraInit
+if '[ -f ~/.tmux.conf ]' 'source ~/.tmux.conf'
