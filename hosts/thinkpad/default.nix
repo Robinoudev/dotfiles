@@ -4,6 +4,10 @@
 
   modules = {
     desktop = {
+      bspwm.enable = true;
+      apps = {
+        rofi.enable = true;
+      };
       term = {
         default = "xst";
         st.enable = true;
@@ -27,6 +31,10 @@
 
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
+  location = {
+    latitude = 52.46083;
+    longitude = 6.56528;
+  };
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
@@ -34,6 +42,7 @@
   networking.useDHCP = false;
   networking.interfaces.enp0s25.useDHCP = true;
   networking.interfaces.wlp3s0.useDHCP = true;
+  networking.networkmanager.enable = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -47,12 +56,12 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  # services.xserver.enable = true;
 
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  # services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver.layout = "us";
