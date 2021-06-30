@@ -25,6 +25,10 @@
       tmux.enable = true;
       zsh.enable = true;
     };
+    dev = {
+      node.enable = true;
+      elixir.enable = true;
+    };
     services = {
       ssh.enable = true;
     };
