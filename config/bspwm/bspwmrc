@@ -23,6 +23,9 @@ bspc rule -a 'Emacs:scratch' state=floating
 bspc rule -a 'Emacs:emacs-everywhere' state=floating sticky=on
 bspc rule -a '*:scratch' state=floating sticky=on center=on border=off rectangle=1000x800+0+0
 
+# Get rid of the ugly cross cursor on the desktop
+xsetroot -cursor_name left_ptr
+
 #
 for file in $XDG_CONFIG_HOME/bspwm/rc.d/*; do
   source "$file"
