@@ -21,7 +21,7 @@
   # Modules
   modules.hardware = {
     audio.enable = true;
-  }
+  };
 
   # CPU
   nix.maxJobs = lib.mkDefault 8;

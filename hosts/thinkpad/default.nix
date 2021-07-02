@@ -18,7 +18,7 @@
       browsers = {
         default = "firefox";
         firefox.enable = true;
-        # qutebrowser.enable = true;
+        qutebrowser.enable = true;
       };
     };
     editors = {
