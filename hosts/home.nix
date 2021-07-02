@@ -22,8 +22,4 @@ with lib;
     xkbVariant = "dvorak";
     xkbOptions = "caps:swapescape";
   };
-
-  # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
 }

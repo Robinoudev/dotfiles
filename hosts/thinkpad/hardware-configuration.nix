@@ -18,6 +18,11 @@
     kernel.sysctl."net.ipv4.icmp_echo_ignore_broadcasts" = 1;
   };
 
+  # Modules
+  modules.hardware = {
+    audio.enable = true;
+  }
+
   # CPU
   nix.maxJobs = lib.mkDefault 8;
   hardware.cpu.intel.updateMicrocode = true;
