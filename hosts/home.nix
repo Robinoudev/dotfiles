@@ -8,6 +8,9 @@ with lib;
     longitude = 6.56528;
   };
 
+  # Bitwarden server
+  modules.shell.bitwarden.config.server = "vault.oudevrielink.net";
+
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "Lat2-Terminus16";

@@ -29,11 +29,13 @@
       elixir.enable = true;
     };
     shell = {
+      bitwarden.enable = true;
       tmux.enable = true;
       zsh.enable = true;
     };
     services = {
       ssh.enable = true;
+      postgresql.enable = true;
     };
     theme.active = "alucard";
   };
