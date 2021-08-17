@@ -57,6 +57,10 @@ with lib.my;
   system.configurationRevision = with inputs; mkIf (self ? rev) self.rev;
   system.stateVersion = "21.05";
 
+  # HACK Momentarily fix 'install-info: cannot allocate memory for gzip -d'
+  #      errors on latest unstable.
+  documentation.info.enable = false;
+
   # nix.package = pkgs.nixUnstable;
   # nix.extraOptions = ''
   #   experimental-features = nix-command flakes

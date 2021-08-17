@@ -18,7 +18,10 @@ in {
 
     user.packages = with pkgs; [
       binutils
-      emacsPgtkGcc
+      # emacsPgtkGcc
+      ((emacsPackagesNgGen emacsPgtkGcc).emacsWithPackages (epkgs: [
+        epkgs.vterm
+      ]))
 
       ## Doom dependencies
       git

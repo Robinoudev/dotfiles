@@ -2,7 +2,7 @@
   inputs = 
     {
       nixpkgs.url = "nixpkgs/nixos-unstable";
-      nixpkgs-unstable.url = "nixpkgs/master";    # for packages on the edge
+      nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable";  # for packages on the edge
       home-manager.url = "github:rycee/home-manager/master";
       home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
