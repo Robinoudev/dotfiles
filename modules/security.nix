@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   ## System security tweaks
@@ -7,6 +7,8 @@
   # security.hideProcessInformation = true;
   # Prevent replacing the running kernel w/o reboot
   security.protectKernelImage = true;
+
+  security.wrappers.slock.source = "${pkgs.slock.out}/bin/slock";
 
   # tmpfs = /tmp is mounted in ram. Doing so makes temp file management speedy
   # on ssd systems, and volatile! Because it's wiped on reboot.
