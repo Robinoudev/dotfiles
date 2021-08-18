@@ -29,6 +29,7 @@
     dev = {
       node.enable = true;
       elixir.enable = true;
+      rust.enable = true;
     };
     shell = {
       bitwarden.enable = true;
