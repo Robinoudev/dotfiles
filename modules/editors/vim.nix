@@ -3,6 +3,7 @@
 with lib;
 with lib.my;
 let cfg = config.modules.editors.vim;
+    configDir = config.dotfiles.configDir;
 in {
   options.modules.editors.vim = {
     enable = mkBoolOpt false;
@@ -13,6 +14,10 @@ in {
       editorconfig-core-c
       unstable.neovim
     ];
+
+    home.configFile = {
+      "nvim" = { source = "${configDir}/nvim"; recursive = true; };
+    };
 
     environment.shellAliases = {
       vim = "nvim";
