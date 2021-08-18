@@ -1,11 +1,11 @@
-{ config, options, lib, ... }:
+{ config, options, lib, home-manager, ... }:
 
 with lib;
 with lib.my;
 
 {
   options = with types; {
-    user = mkOpt attrs { };
+    user = mkOpt attrs {};
 
     dotfiles = {
       dir = mkOpt path
