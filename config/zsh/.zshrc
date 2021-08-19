@@ -46,6 +46,9 @@ if [[ $TERM != dumb ]]; then
   autoload -Uz compinit && compinit -u -d $ZSH_CACHE/zcompdump
   autopair-init
 
+  # Source fzf.zsh when it is available
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
   # If you have host-local configuration, this is where you'd put it
   [ -f ~/.zshrc ] && source ~/.zshrc
 fi
