@@ -81,24 +81,12 @@ in {
   modules.shell.bitwarden.config.server = "vault.oudevrielink.net";
 
   i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "dvorak";
-  # };
 
   environment.systemPackages = [ pkgs.xorg.xkbcomp ];
- services.xserver.displayManager.sessionCommands = "${pkgs.xorg.xkbcomp}/bin/xkbcomp ${customKeyboardLayout} $DISPLAY";
+  services.xserver.displayManager.sessionCommands = "${pkgs.xorg.xkbcomp}/bin/xkbcomp ${customKeyboardLayout} $DISPLAY";
+  services.xserver.autoRepeatDelay = 250;
+  services.xserver.autoRepeatInterval = 50;
 
   # Configure the console keymap from the xserver keyboard settings
   console.useXkbConfig = true;
-
-  # Configure keymap in X11
-  # services.xserver = {
-  #   autoRepeatDelay = 250;
-  #   autoRepeatInterval = 50;
-  #   xkbOptions = "caps:swapescape";
-  #   displayManager = {
-  #     sessionCommands = "${pkgs.xorg.xkbcomp}/bin/xkbcomp ${customKeyboardLayout} $DISPLAY";
-  #   };
-  # };
 }

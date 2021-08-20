@@ -14,6 +14,7 @@
       term = {
         default = "xst";
         st.enable = true;
+        alacritty.enable = true;
       };
       browsers = {
         default = "firefox";
@@ -35,10 +36,12 @@
       bitwarden.enable = true;
       tmux.enable = true;
       zsh.enable = true;
+      direnv.enable = true;
     };
     services = {
       ssh.enable = true;
       postgresql.enable = true;
+      sqlite.enable = true;
     };
     theme.active = "alucard";
   };
