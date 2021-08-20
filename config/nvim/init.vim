@@ -11,10 +11,14 @@ call plug#begin('~/.vim/plugged')
     " Neovim Tree shitter
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'nvim-treesitter/playground'
+
+    " Colors
+    Plug 'dracula/vim'
 call plug#end()
 
 filetype indent plugin on
 syntax on
+colorscheme dracula
 
 lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
 

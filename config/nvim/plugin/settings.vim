@@ -1,10 +1,10 @@
 let mapleader="\<Space>"
 
-" if has('termguicolors')
-"     set termguicolors
-" endif
-" set number                            " Line numbers
-" set relativenumber                    " Numbers relative to current line
+if has('termguicolors')
+    set termguicolors
+endif
+set number                            " Line numbers
+set relativenumber                    " Numbers relative to current line
 set hidden                            " Make it possible to hide unsaved buffers
 set shiftwidth=4
 set tabstop=4                         " A tab counts for 4 spaces
