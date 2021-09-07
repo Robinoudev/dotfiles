@@ -13,35 +13,8 @@ with lib.my;
 
   environment.variables.DOTFILES = config.dotfiles.dir;
   environment.variables.DOTFILES_BIN = config.dotfiles.binDir;
-
-  # Default boot options for all machines
-  boot = {
-    loader = {
-      efi.canTouchEfiVariables = mkDefault true;
-      systemd-boot.configurationLimit = 10;
-      systemd-boot.enable = mkDefault true;
-    };
-  };
-
-  # Bare necessary packages
-  environment.systemPackages = with pkgs; [
-    bind
-    cached-nix-shell
-    coreutils
-    git
-    vim 
-    wget
-    unzip
-    bc
-    # Mounting different filesystems
-    bashmount
-    sshfs
-    exfat
-    ntfs3g
-    hfsprogs
-  ];
-
   environment.variables.NIXPKGS_ALLOW_UNFREE = "1";
+
   nix =
     let filteredInputs = filterAttrs (n: _: n != "self") inputs;
         nixPathInputs  = mapAttrsToList (n: v: "${n}=${v}") filteredInputs;
@@ -57,12 +30,32 @@ with lib.my;
   system.configurationRevision = with inputs; mkIf (self ? rev) self.rev;
   system.stateVersion = "21.05";
 
-  # HACK Momentarily fix 'install-info: cannot allocate memory for gzip -d'
-  #      errors on latest unstable.
-  documentation.info.enable = false;
+  # Default boot options for all machines
+  boot = {
+    kernelPackages = mkDefault pkgs.linuxPackages_5_12;
+    loader = {
+      efi.canTouchEfiVariables = mkDefault true;
+      systemd-boot.configurationLimit = 10;
+      systemd-boot.enable = mkDefault true;
+    };
+  };
 
-  # nix.package = pkgs.nixUnstable;
-  # nix.extraOptions = ''
-  #   experimental-features = nix-command flakes
-  # '';
+  # Bare necessary packages
+  environment.systemPackages = with pkgs; [
+    bind
+    cached-nix-shell
+    coreutils
+    git
+    vim
+    wget
+    unzip
+    bc
+    # Mounting different filesystems
+    bashmount
+    sshfs
+    exfat
+    ntfs3g
+    hfsprogs
+  ];
+
 }
