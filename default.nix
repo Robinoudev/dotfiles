@@ -26,13 +26,27 @@ with lib.my;
         "nixpkgs-overlays=${config.dotfiles.dir}/overlays"
         "dotfiles=${config.dotfiles.dir}"
       ];
+      binaryCaches = [
+        "https://nix-community.cachix.org"
+      ];
+      binaryCachePublicKeys = [
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      ];
+      registry = registryInputs // { dotfiles.flake = inputs.self; };
+      autoOptimiseStore = true;
     };
+
   system.configurationRevision = with inputs; mkIf (self ? rev) self.rev;
   system.stateVersion = "21.05";
 
+  ## Some reasonable, global defaults
+  # This is here to appease 'nix flake check' for generic hosts with no
+  # hardware-configuration.nix or fileSystem config.
+  fileSystems."/".device = mkDefault "/dev/disk/by-label/nixos";
+
   # Default boot options for all machines
   boot = {
-    kernelPackages = mkDefault pkgs.linuxPackages_5_12;
+    kernelPackages = mkDefault pkgs.linuxPackages_5_14;
     loader = {
       efi.canTouchEfiVariables = mkDefault true;
       systemd-boot.configurationLimit = 10;
