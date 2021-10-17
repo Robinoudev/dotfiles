@@ -1,24 +1,5 @@
-call plug#begin('~/.vim/plugged')
-    " FZF
-    Plug 'junegunn/fzf'
-    Plug 'junegunn/fzf.vim'
-    Plug 'stsewd/fzf-checkout.vim'
-
-    Plug 'tpope/vim-fugitive'
-    Plug 'tpope/vim-commentary'
-    Plug 'justinmk/vim-dirvish'
-
-    " Neovim Tree shitter
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    Plug 'nvim-treesitter/playground'
-
-    " Colors
-    Plug 'dracula/vim'
-call plug#end()
-
 filetype indent plugin on
 syntax on
-colorscheme dracula
 
 lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
 

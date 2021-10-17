@@ -14,6 +14,7 @@ in {
       erlang-ls
       elixir
       elixir_ls
+      inotify-tools # for live reload
     ];
 
     env.MIX_HOME        = "$XDG_CONFIG_HOME/mix";

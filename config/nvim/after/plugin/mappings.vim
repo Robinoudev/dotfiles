@@ -23,11 +23,15 @@ nnoremap , za
 nnoremap Y y$
 
 " FZF
-nnoremap <C-p> :GF<CR>
+nnoremap <C-p> :Telescope find_files<CR>
 nnoremap <leader>pf :Files<CR>
-nnoremap <leader>ps :Rg<Space>
-nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
-nnoremap <leader>pt :Rg TODO\(robin\)<CR><CR>
+nnoremap <leader>ps :Telescope live_grep<CR>
+nnoremap <leader>pw :Telescope grep_string<CR>
+nnoremap <leader>pb :Telescope buffers<CR>
+nnoremap <leader>pt :Rg TODO\(robin\)<CR>
+nnoremap <leader>ca :Telescope lsp_code_actions<CR>
+nnoremap <leader>cd :Telescope lsp_definitions<CR>
+nnoremap <leader>ht :Telescope help_tags<CR>
 
 " Git
 nmap <silent><leader>gs :G<CR>
