@@ -48,10 +48,16 @@ in {
           jetbrains-mono
           siji
           font-awesome-ttf
+          (iosevka-bin.override { variant = "aile"; })
+          (iosevka-bin.override { variant = "etoile"; })
+          (nerdfonts.override { fonts = [ "Iosevka" ]; })
         ];
         fontconfig.defaultFonts = {
-          sansSerif = ["Fira Sans"];
-          monospace = ["Fira Code"];
+          monospace = [ "Iosevka Nerd Font" ];
+          serif = [ "Iosevka Etoile" ];
+          sansSerif = [ "Iosevka Aile" ];
+          /* sansSerif = ["Fira Sans"]; */
+          /* monospace = ["Fira Code"]; */
         };
       };
 
@@ -96,7 +102,7 @@ in {
         (mkIf desktop.apps.rofi.enable {
           "rofi/theme" = { source = ./config/rofi; recursive = true; };
         })
-        (mkIf (desktop.bspwm.enable || desktop.stumpwm.enable) {
+        (mkIf (desktop.bspwm.enable) {
           "polybar" = { source = ./config/polybar; recursive = true; };
           "dunst/dunstrc".source = ./config/dunstrc;
           "Dracula-purple-solid-kvantum" = {

@@ -201,7 +201,7 @@ module BW
         subtitle = " <span size=\"x-small\">(#{i['card']['brand'].downcase})</span>"
       when 4  # identities
       end
-      ["<span font_desc=\"Fira Code\" font_weight=\"bold\">#{icon} </span> <b>#{i['name']}</b>#{subtitle}", i]
+      ["<span font_desc=\"Iosevka Nerd Font\" font_weight=\"bold\">#{icon} </span> <b>#{i['name']}</b>#{subtitle}", i]
     end
     case select
     when :if_only
@@ -248,7 +248,7 @@ module BW
       if value.kind_of? String
         valueLabel = value
         valueLabel = value.gsub /./, '*' if label == 'Password'
-        rofiData["<span font_desc=\"Fira Code\" font_weight=\"bold\">%-#{maxLength}s</span> %s" % [label, valueLabel]] = value
+        rofiData["<span font_desc=\"Iosevka Nerd Font\" font_weight=\"bold\">%-#{maxLength}s</span> %s" % [label, valueLabel]] = value
       else
         rofiData[label] = value
       end

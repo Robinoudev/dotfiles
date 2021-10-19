@@ -89,4 +89,12 @@ in {
 
   # Configure the console keymap from the xserver keyboard settings
   console.useXkbConfig = true;
+
+  networking.hosts =
+    let hostConfig = {
+          "192.168.1.141" = [ "thinkpad" ];
+        };
+        hosts = flatten (attrValues hostConfig);
+        hostName = config.networking.hostName;
+      in mkIf (builtins.elem hostName hosts) hostConfig;
 }

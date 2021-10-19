@@ -1,22 +1,24 @@
 super + alt + Escape
-	bspc quit
+  bspc quit
 
+# kill a node
 super + {_,shift + }q
-	bspc node -{c,k}
+  bspc node -{c,k}
 
+# alternate between tiled and monacle
 super + t
-	bspc desktop -l next
+  bspc desktop -l next
 
 super + apostrophe
-	bspc window -s last
+  bspc window -s last
 
 # Attach to a detached session. If none is available create a new one, rather
 # than attach to one that is already attached to elsewhere.
 super + Return
-	xst -e bash -c "(tmux ls | grep -qEv 'attached|scratch' && tmux at) || tmux"
+  alacritty -e bash -c "(tmux ls | grep -qEv 'attached|scratch' && tmux at) || tmux"
 
 ctrl + super + Return
-	xst
+	alacritty
 
 # Open a disposable, floating terminal window, for quick shell commands.
 super + grave
@@ -77,8 +79,17 @@ super + alt + Return
 super + alt + Delete
 	bspc node -p cancel
 
-super + {_,shift +}{1-9,0}
-	bspc {desktop -f,node -d} {1-9,10};
+# Bindings to move to workspaces and move windows to workspaces
+super + {_,shift +}plus
+  bspc {desktop -f,node -d} 1
+super + {_,shift +}bracketleft
+  bspc {desktop -f,node -d} 2
+super + {_,shift +}braceleft
+  bspc {desktop -f,node -d} 3
+super + {_,shift +}parenleft
+  bspc {desktop -f,node -d} 4
+super + {_,shift +}ampersand
+  bspc {desktop -f,node -d} 5
 
 # expand a window by moving one of its side outward
 super + {Left,Down,Up,Right}

@@ -8,11 +8,12 @@
   modules = {
     desktop = {
       bspwm.enable = true;
+      /* plasma.enable = true; */
       apps = {
         rofi.enable = true;
       };
       term = {
-        default = "xst";
+        default = "alacritty";
         st.enable = true;
         alacritty.enable = true;
       };

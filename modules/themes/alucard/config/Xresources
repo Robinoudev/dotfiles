@@ -64,7 +64,7 @@ URxvt*.background:             blk
 URxvt*.borderless:             1
 URxvt*.buffered:               true
 URxvt*.cursorBlink:            true
-URxvt*.font:                   xft:Fira Code:pixelsize=12
+URxvt*.font:                   xft:Iosevka Nerd Font Mono:pixelsize=12
 URxvt*.internalBorder:         10
 URxvt*.letterSpace:            0
 URxvt*.lineSpace:              0
