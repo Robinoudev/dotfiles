@@ -4,10 +4,12 @@ if ! zgen saved; then
   echo "Initializing zgen"
   zgen load hlissner/zsh-autopair autopair.zsh
   zgen load zsh-users/zsh-history-substring-search
-  zgen load zdharma/history-search-multi-word
+  # zgen load zdharma/history-search-multi-word
   zgen load zsh-users/zsh-completions src
   zgen load junegunn/fzf shell
-  [ -z "$SSH_CONNECTION" ] && zgen load zdharma/fast-syntax-highlighting
+  # [ -z "$SSH_CONNECTION" ] && zgen load zdharma/fast-syntax-highlighting
+  # fast-syntax-highlighting returns a 404 on github now? :(
+  [ -z "$SSH_CONNECTION" ] && zgen load zsh-users/zsh-syntax-highlighting
   zgen save
 fi
 
@@ -51,4 +53,8 @@ if [[ $TERM != dumb ]]; then
 
   # If you have host-local configuration, this is where you'd put it
   [ -f ~/.zshrc ] && source ~/.zshrc
+
+  # Load asdf when available
+  [ -d "~/.asdf" ] || git clone https://github.com/asdf-vm/asdf.git ~/.asdf
+  . $HOME/.asdf/asdf.sh
 fi

@@ -43,6 +43,10 @@
     };
   };
 
+  user.packages= with pkgs; [
+    pamixer
+  ];
+
   fileSystems."/" =
     { device = "/dev/disk/by-label/nixos";
       fsType = "btrfs";

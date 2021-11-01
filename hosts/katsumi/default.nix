@@ -7,12 +7,13 @@
 
   modules = {
     desktop = {
-      # bspwm.enable = true;
+      bspwm.enable = true;
       # xfce.enable = true;
-      plasma.enable = true;
-      # apps = {
-      #   rofi.enable = true;
-      # };
+      # plasma.enable = true;
+      # awesomewm.enable = true;
+       apps = {
+         rofi.enable = true;
+       };
       term = {
         default = "alacritty";
         st.enable = true;
