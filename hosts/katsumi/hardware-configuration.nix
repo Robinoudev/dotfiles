@@ -18,27 +18,44 @@
     kernel.sysctl."net.ipv4.icmp_echo_ignore_broadcasts" = 1;
   };
 
+  services.xserver.videoDrivers = ["nvidia"];
+
   nix.maxJobs = lib.mkDefault 8;
-  hardwarde.cpu.amd.updateMicrocode = true;
+  hardware.cpu.amd.updateMicrocode = true;
   powerManagement.cpuFreqGovernor = "performance";
 
   # Power management
   environment.systemPackages = [ pkgs.acpi ];
   powerManagement.powertop.enable = true;
 
+  # razer
+  hardware.openrazer.enable = true;
+
+  services.xserver.xrandrHeads = ["DP-4"];
+
+  # audio
+  services = {
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+    };
+  };
+
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/2f4196a8-d1cf-40f3-bcb8-6f923d214aa3";
+    { device = "/dev/disk/by-label/nixos";
       fsType = "btrfs";
       options = [ "subvol=nixos" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/2DF3-ADE9";
+    { device = "/dev/disk/by-label/boot";
       fsType = "vfat";
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/22f821ee-4918-41ae-a706-c0a4c48f59db"; }
+    [ { device = "/dev/disk/by-label/swap"; }
     ];
 
   # high-resolution display

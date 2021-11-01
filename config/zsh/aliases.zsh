@@ -12,6 +12,3 @@ r() {
   local time=$1; shift
   sched "$time" "notify-send --urgency=critical 'Reminder' '$@'; ding";
 }; compdef r=sched
-
-# docker
-alias dc="docker-compose"

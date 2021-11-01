@@ -8,7 +8,7 @@
   modules = {
     desktop = {
       bspwm.enable = true;
-      /* plasma.enable = true; */
+      # plasma.enable = true;
       apps = {
         rofi.enable = true;
       };
@@ -43,6 +43,7 @@
       ssh.enable = true;
       postgresql.enable = true;
       sqlite.enable = true;
+      docker.enable = true;
     };
     theme.active = "alucard";
   };
