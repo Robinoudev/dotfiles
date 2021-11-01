@@ -7,11 +7,12 @@
 
   modules = {
     desktop = {
-      bspwm.enable = true;
-      # plasma.enable = true;
-      apps = {
-        rofi.enable = true;
-      };
+      # bspwm.enable = true;
+      # xfce.enable = true;
+      plasma.enable = true;
+      # apps = {
+      #   rofi.enable = true;
+      # };
       term = {
         default = "alacritty";
         st.enable = true;
@@ -37,6 +38,7 @@
       bitwarden.enable = true;
       tmux.enable = true;
       zsh.enable = true;
+      # fish.enable = true;
       direnv.enable = true;
     };
     services = {
