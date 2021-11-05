@@ -51,6 +51,7 @@ with lib.my;
       efi.canTouchEfiVariables = mkDefault true;
       systemd-boot.configurationLimit = 10;
       systemd-boot.enable = mkDefault true;
+      grub.useOSProber = true;
     };
   };
 
@@ -70,6 +71,7 @@ with lib.my;
     exfat
     ntfs3g
     hfsprogs
+    pass
   ];
 
 }
