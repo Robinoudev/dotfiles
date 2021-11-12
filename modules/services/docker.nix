@@ -13,6 +13,7 @@ in {
     user.packages = with pkgs; [
       docker
       docker-compose
+      docker-credential-helpers
     ];
 
     env.DOCKER_CONFIG = "$XDG_CONFIG_HOME/docker";

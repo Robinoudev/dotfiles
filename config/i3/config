@@ -45,7 +45,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec alacritty "-e bash -c \"(tmux ls | grep -qEv 'attached|scratch' && tmux at) || tmux\""
 
 # kill focused window
 bindsym $mod+Shift+semicolon kill
@@ -59,37 +59,25 @@ bindsym $mod+e exec --no-startup-id dmenu_run
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+h focus left
-bindsym $mod+t focus down
-bindsym $mod+n focus up
-bindsym $mod+s focus right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+bindsym $mod+l focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+h focus right
 
 # move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+t move down
-bindsym $mod+Shift+n move up
-bindsym $mod+Shift+s move right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+l move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+h move right
 
 # split in horizontal orientation
-bindsym $mod+d split h
+bindsym $mod+hyphen split h
 
 # split in vertical orientation
-bindsym $mod+k split v
+bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+u fullscreen toggle
+bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+o layout stacking
@@ -146,7 +134,7 @@ bindsym $mod+Shift+bracketright move container to workspace number $ws9
 bindsym $mod+Shift+asterisk move container to workspace number $ws10
 
 # reload the configuration file
-bindsym $mod+Shift+j reload
+bindsym $mod+Shift+r reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+p restart
 # exit i3 (logs you out of your X session)

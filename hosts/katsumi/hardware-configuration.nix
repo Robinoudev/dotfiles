@@ -32,6 +32,7 @@
 
   # razer
   hardware.openrazer.enable = true;
+  user.extraGroups = [ "plugdev" "openrazer" ];
 
   services.xserver.xrandrHeads = ["DP-4"];
 
@@ -48,6 +49,7 @@
   user.packages = with pkgs; [
     pavucontrol
     pamixer
+    openrazer-daemon
   ];
 
   fileSystems."/" =

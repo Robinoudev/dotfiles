@@ -20,7 +20,7 @@
         alacritty.enable = true;
       };
       browsers = {
-        default = "firefox";
+        default = "brave";
         firefox.enable = true;
         # qutebrowser.enable = true;
         brave.enable = true;
@@ -62,6 +62,14 @@
   networking.useDHCP = false;
   networking.interfaces.eno1.useDHCP = true;
   networking.networkmanager.enable = true;
+
+  # some work related stuff
+  networking.extraHosts =
+    ''
+    127.0.0.1 omdenken.craft.local
+    127.0.0.1 herokuPostgresql
+    127.0.0.1 herokuRedis
+    '';
 
   programs.ssh.startAgent = true;
   services.openssh.startWhenNeeded = true;
