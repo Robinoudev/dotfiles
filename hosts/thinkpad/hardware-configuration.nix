@@ -35,10 +35,12 @@
   programs.light.enable = true;
   user.extraGroups = [ "video" ];
 
+  services.xserver.dpi = 96;
 
   fileSystems."/" =
     { device = "/dev/disk/by-label/nixos";
-      fsType = "ext4";
+      fsType = "btrfs";
+      options = ["subvol=nixos"];
     };
 
   fileSystems."/boot" =
@@ -49,5 +51,4 @@
   swapDevices =
     [ { device = "/dev/disk/by-label/swap"; }
     ];
-
 }

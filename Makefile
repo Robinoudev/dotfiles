@@ -1,6 +1,6 @@
-USER    := robin
-HOST    := katsumi
-FLAGS   := --flake .\#$(HOST)
+USER    ?= robin
+HOST    ?= katsumi
+FLAGS   ?= --flake .\#$(HOST)
 
 
 switch:

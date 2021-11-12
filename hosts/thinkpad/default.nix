@@ -8,9 +8,11 @@
   modules = {
     desktop = {
       bspwm.enable = true;
-      /* plasma.enable = true; */
+      # plasma.enable = true;
+      # xfce.enable = true;
       apps = {
         rofi.enable = true;
+        zathura.enable = true;
       };
       term = {
         default = "alacritty";

@@ -65,13 +65,13 @@ with lib.my;
     wget
     unzip
     bc
+    (pass.withExtensions (exts: [ exts.pass-otp ]))
     # Mounting different filesystems
     bashmount
     sshfs
     exfat
     ntfs3g
     hfsprogs
-    pass
   ];
 
 }
