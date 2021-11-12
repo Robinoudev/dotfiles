@@ -7,8 +7,8 @@
 
   modules = {
     desktop = {
-      bspwm.enable = true;
-      # xfce.enable = true;
+      /* bspwm.enable = true; */
+      xfce.enable = true;
       # plasma.enable = true;
       # awesomewm.enable = true;
        apps = {
@@ -22,8 +22,10 @@
       browsers = {
         default = "firefox";
         firefox.enable = true;
-        qutebrowser.enable = true;
+        # qutebrowser.enable = true;
+        brave.enable = true;
       };
+      steam.enable = true;
     };
     editors = {
       default = "nvim";

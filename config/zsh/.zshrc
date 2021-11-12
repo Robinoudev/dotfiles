@@ -55,6 +55,5 @@ if [[ $TERM != dumb ]]; then
   [ -f ~/.zshrc ] && source ~/.zshrc
 
   # Load asdf when available
-  [ -d "~/.asdf" ] || git clone https://github.com/asdf-vm/asdf.git ~/.asdf
-  . $HOME/.asdf/asdf.sh
+  [ -d ~/.asdf ] && . $HOME/.asdf/asdf.sh
 fi

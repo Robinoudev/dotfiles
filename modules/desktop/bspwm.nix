@@ -39,6 +39,8 @@ in {
       };
     };
 
+    systemd.user.services.unclutter.enable = true;
+
     systemd.user.services."dunst" = {
       enable = true;
       description = "";

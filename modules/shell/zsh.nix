@@ -46,6 +46,7 @@ in {
       fzf
       tldr
       ripgrep
+      asdf-vm
     ];
 
     env = {

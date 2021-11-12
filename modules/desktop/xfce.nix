@@ -22,5 +22,9 @@ in {
       windowManager.i3.enable = true;
       displayManager.defaultSession = "xfce+i3";
     };
+
+    home.configFile = {
+      "i3".source = "${configDir}/i3";
+    };
   };
 }

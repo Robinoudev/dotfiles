@@ -46,6 +46,7 @@
   };
 
   user.packages = with pkgs; [
+    pavucontrol
     pamixer
   ];
 
@@ -65,5 +66,7 @@
     ];
 
   # high-resolution display
+  # TODO(robin): For some reasen this makes gui apps way to big
+  # set dpi myself?
   hardware.video.hidpi.enable = lib.mkDefault true;
 }
