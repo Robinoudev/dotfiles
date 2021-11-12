@@ -12,3 +12,8 @@ r() {
   local time=$1; shift
   sched "$time" "notify-send --urgency=critical 'Reminder' '$@'; ding";
 }; compdef r=sched
+
+## Hashes
+hash -d dev=$HOME/documents/dev
+hash -d ozone=~dev/work/ozone
+hash -d nixos=/etc/nixos

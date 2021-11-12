@@ -6,8 +6,9 @@ bindkey -M viins ' ' magic-space
 # history search
 bindkey '^R' history-incremental-search-backward
 
-# Shift + Tab
-bindkey -M viins '^[[Z' reverse-menu-complete
-# bind UP and DOWN arrow keys
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
+# Use vim keys in tab complete menu:
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -v '^?' backward-delete-char
