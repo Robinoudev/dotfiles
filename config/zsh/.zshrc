@@ -2,6 +2,19 @@ autoload -U colors && colors
 autoload -Uz compinit && compinit -u -d $ZSH_CACHE/zcompdump
 autoload -U promptinit; promptinit
 
+[ -d "$ZGEN_DIR" ] || git clone https://github.com/tarjoilija/zgen "$ZGEN_DIR"
+source $ZGEN_SOURCE
+if ! zgen saved; then
+  echo "Initializing zgen"
+  zgen load hlissner/zsh-autopair autopair.zsh
+  zgen load zsh-users/zsh-history-substring-search
+  zgen load zdharma-continuum/history-search-multi-word
+  zgen load zsh-users/zsh-completions src
+  zgen load junegunn/fzf shell
+  [ -z "$SSH_CONNECTION" ] && zgen load zdharma-continuum/fast-syntax-highlighting
+  zgen save
+fi
+
 source $ZDOTDIR/config.zsh
 source $ZDOTDIR/keybinds.zsh
 source $ZDOTDIR/completion.zsh
@@ -19,6 +32,10 @@ function _cache {
   fi
   source $cache || rm -f $cache
 }
+_cache fasd --init posix-alias zsh-{hook,{c,w}comp{,-install}}
+
+# auto pair
+autopair-init
 
 # fd > find
 if command -v fd >/dev/null; then
