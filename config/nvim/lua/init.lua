@@ -5,6 +5,9 @@ require('robin.telescope')
 require('robin.settings')
 require('robin.treesitter')
 require('robin.completion')
+-- require('robin.spaceline')
+require('robin.nvim-autopairs')
+require('robin.diffview')
 
 -- basic settings
 

@@ -95,7 +95,13 @@ opt("o", "mouse", "a")
 opt("o", "cmdheight", 1)
 
 vim.cmd "set fillchars+=vert:│"
-vim.cmd "colorscheme codesmell_dark"
+
+-- COLORSCHEME
+vim.g.material_style = "deep ocean"
+-- vim.cmd "colorscheme codesmell_dark"
+vim.cmd "colorscheme material"
+-- require('material').set()
+-- vim.g.modus_moody_enable
 
 local M = {}
 

@@ -21,7 +21,7 @@ cmp.setup({
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.close(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ['<C-u>'] = cmp.mapping.confirm({ select = true }),
     },
     documentation = {
       border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
@@ -70,7 +70,7 @@ require('lspconfig').solargraph.setup {
 }
 require('lspconfig').elixirls.setup {
     capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-    cmd = { "elixir-ls" };
+    cmd = { "/Users/robin/.local/bin/elixir-ls/language_server.sh" };
 }
 require('lspconfig').vimls.setup {
     capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())

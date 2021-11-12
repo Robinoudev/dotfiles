@@ -24,6 +24,7 @@ nnoremap Y y$
 
 " FZF
 nnoremap <C-p> :Telescope find_files<CR>
+nnoremap <leader><leader> :Telescope find_files<CR>
 nnoremap <leader>pf :Files<CR>
 nnoremap <leader>ps :Telescope live_grep<CR>
 nnoremap <leader>pw :Telescope grep_string<CR>
