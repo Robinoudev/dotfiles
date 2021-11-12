@@ -84,11 +84,15 @@ bindsym $mod+o layout stacking
 bindsym $mod+comma layout tabbed
 bindsym $mod+period layout toggle split
 
+## ROFI
+bindsym $mod+Tab exec --no-startup-id $DOTFILES_BIN/rofi/windowmenu
+bindsym $mod+space exec --no-startup-id $DOTFILES_BIN/rofi/appmenu
+
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+u floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+u focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
