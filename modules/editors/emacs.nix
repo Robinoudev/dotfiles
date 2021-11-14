@@ -2,7 +2,7 @@
 
 with lib;
 with lib.my;
-let cfg = condig.modules.editors.emacs;
+let cfg = config.modules.editors.emacs;
     configDir = config.dotfiles.configDir;
 in {
   options.modules.editors.emacs = {
@@ -13,7 +13,7 @@ in {
     };
   };
 
-  config = {
+  config = mkIf cfg.enable {
     nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
 
     user.packages = with pkgs; [

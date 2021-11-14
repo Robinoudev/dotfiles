@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
 
 {
-  # hardened kerner for better security
-  boot.kernelPackage = pkgs.linuxPackages_5_13_hardened;
+  # hardened kernel for better security
+  # boot.kernelPackages = pkgs.linuxPackages_hardened;
 
   # Have nix perform automatic garbage collect
   nix.gc = {

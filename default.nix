@@ -65,6 +65,7 @@ with lib.my;
     wget
     unzip
     bc
+    gnumake
     (pass.withExtensions (exts: [ exts.pass-otp ]))
     # Mounting different filesystems
     bashmount

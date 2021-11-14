@@ -13,12 +13,12 @@ in {
 
     user.extraGroups = [ "vaultwarden" ];
 
-    # services.fail2ban.jails.vaultwarden = ''
-    #   enabled = true
-    #   filter = vaultwarden
-    #   port = 80,443,8002
-    #   maxretry = 5
-    # '';
+    services.fail2ban.jails.vaultwarden = ''
+      enabled = true
+      filter = vaultwarden
+      port = 80,443,8002
+      maxretry = 5
+    '';
   };
 }
 
