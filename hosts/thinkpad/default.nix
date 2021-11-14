@@ -36,7 +36,7 @@
       rust.enable = true;
     };
     shell = {
-      bitwarden.enable = true;
+      vaultwarden.enable = true;
       tmux.enable = true;
       zsh.enable = true;
       direnv.enable = true;

@@ -91,7 +91,7 @@ module BW
   end
 
   def self.notify message, title: nil, urgency: "normal"
-    sh 'notify-send', '-u', urgency, '-a', "Bitwarden", *[title, message].compact
+    sh 'notify-send', '-u', urgency, '-a', "Vaultwarden", *[title, message].compact
   end
 
   def self.error message
