@@ -10,7 +10,7 @@ with lib.my;
   modules = {
     shell = {
       direnv.enable = true;
-      # git.enable = true;
+      git.enable = true;
       zsh.enable = true;
     };
     services = {

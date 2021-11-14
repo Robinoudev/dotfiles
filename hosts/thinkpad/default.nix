@@ -40,6 +40,8 @@
       tmux.enable = true;
       zsh.enable = true;
       direnv.enable = true;
+      git.enable = true;
+      gnupg.enable = true;
     };
     services = {
       ssh.enable = true;
