@@ -9,6 +9,7 @@ with lib.my;
     ./hardware-configuration.nix   
 
     ./modules/vaultwarden.nix
+    ./modules/gitea.nix
   ];
 
   modules = {
@@ -16,6 +17,7 @@ with lib.my;
       direnv.enable = true;
       git.enable = true;
       zsh.enable = true;
+      gnupg.enable = true;
     };
     services = {
       fail2ban.enable = true;
