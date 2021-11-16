@@ -24,6 +24,7 @@
         firefox.enable = true;
         # qutebrowser.enable = true;
         brave.enable = true;
+        chromium.enable = true;
       };
       steam.enable = true;
     };
