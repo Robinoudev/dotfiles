@@ -1,0 +1,10 @@
+{
+  "log": {
+    "prefix": "log",
+    "body": "console.log($0);"
+  },
+  "todo": {
+    "prefix": "todo",
+    "body": "// TODO(robin): $0"
+  }
+}
