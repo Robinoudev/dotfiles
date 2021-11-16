@@ -52,6 +52,9 @@
       docker.enable = true;
       bluetooth.enable = true;
     };
+    hardware = {
+      hidpi.enable = true;
+    };
     theme.active = "alucard";
   };
 

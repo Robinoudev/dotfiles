@@ -73,16 +73,4 @@
   swapDevices =
     [ { device = "/dev/disk/by-label/swap"; }
     ];
-
-  # high-resolution display
-  # TODO(robin): For some reasen this makes gui apps way to big
-  # set dpi myself?
-  # hardware.video.hidpi.enable = lib.mkDefault true;
-  # NOTE: the below are the only commands which hidpi sets
-  console.font = "${pkgs.terminus_font}/share/consolefonts/ter-v32n.psf.gz";
-
-    # Needed when typing in passwords for full disk encryption
-  console.earlySetup = true;
-  boot.loader.systemd-boot.consoleMode = "1";
-  services.xserver.dpi = 146;
 }
