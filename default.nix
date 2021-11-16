@@ -73,6 +73,8 @@ with lib.my;
     exfat
     ntfs3g
     hfsprogs
+    # usb tools
+    usbutils
   ];
 
 }

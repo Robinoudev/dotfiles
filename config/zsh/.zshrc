@@ -11,6 +11,7 @@ if ! zgen saved; then
   zgen load zdharma-continuum/history-search-multi-word
   zgen load zsh-users/zsh-completions src
   zgen load junegunn/fzf shell
+  zgen load zsh-users/zsh-autosuggestions
   [ -z "$SSH_CONNECTION" ] && zgen load zdharma-continuum/fast-syntax-highlighting
   zgen save
 fi

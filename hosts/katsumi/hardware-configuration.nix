@@ -18,6 +18,10 @@
     # Refuse ICMP echo requests on my desktop/laptop; nobody has any business
     # pinging them, unlike my servers.
     kernel.sysctl."net.ipv4.icmp_echo_ignore_broadcasts" = 1;
+
+    kernel.sysctl."vm.swappiness" = 10;
+    kernelPackages = pkgs.linuxPackages_latest;
+    cleanTmpDir = true;
   };
 
   services.xserver.videoDrivers = ["nvidia"];
@@ -28,11 +32,14 @@
 
   # Power management
   environment.systemPackages = [ pkgs.acpi ];
-  powerManagement.powertop.enable = true;
+
+  # TODO: powertop caused my peripherals to freeze for x amount of time
+  #       Can this be tweeked in powertop? https://askubuntu.com/questions/185274/how-can-i-disable-usb-autosuspend-for-a-specific-device
+  # powerManagement.powertop.enable = true;
 
   # razer
   hardware.openrazer.enable = true;
-  user.extraGroups = [ "plugdev" "openrazer" ];
+  user.extraGroups = [ "plugdev" "openrazer" "audio" ];
 
   services.xserver.xrandrHeads = ["DP-4"];
 

@@ -7,8 +7,8 @@
 
   modules = {
     desktop = {
-      /* bspwm.enable = true; */
-      xfce.enable = true;
+      bspwm.enable = true;
+      # xfce.enable = true;
       # plasma.enable = true;
       # awesomewm.enable = true;
        apps = {
@@ -50,6 +50,7 @@
       postgresql.enable = true;
       sqlite.enable = true;
       docker.enable = true;
+      bluetooth.enable = true;
     };
     theme.active = "alucard";
   };
@@ -76,11 +77,11 @@
   services.openssh.startWhenNeeded = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  services.xserver.libinput.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
-  # programs.mtr.enable = true;
+  programs.mtr.enable = true;
   programs.gnupg.agent = {
     enable = true;
   #   enableSSHSupport = true;

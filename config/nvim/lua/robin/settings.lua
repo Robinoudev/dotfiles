@@ -96,6 +96,12 @@ opt("o", "cmdheight", 1)
 
 vim.cmd "set fillchars+=vert:│"
 
+opt(
+  "o",
+  "vsnip_snippet_dirs",
+  ["/etc/nixos/config/nvim/snippets", os.getenv("XDG_CONFIG_HOME") .. "/nvim/snippets"]
+)
+
 -- COLORSCHEME
 vim.g.material_style = "deep ocean"
 -- vim.cmd "colorscheme codesmell_dark"

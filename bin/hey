@@ -168,6 +168,7 @@ module Hey
   defcmd [:upgrade, :up] do
     desc "Update all flakes and rebuild system"
     lambda do |_args|
+      # TODO: undefined command update for Hey::Module
       update
       rebuild :switch
     end
