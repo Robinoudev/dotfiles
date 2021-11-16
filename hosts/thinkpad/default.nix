@@ -20,9 +20,11 @@
         alacritty.enable = true;
       };
       browsers = {
-        default = "firefox";
+        default = "brave";
         firefox.enable = true;
-        qutebrowser.enable = true;
+        brave.enable = true;
+        chromium.enable = true;
+        # qutebrowser.enable = true;
       };
     };
     editors = {
@@ -47,6 +49,7 @@
       ssh.enable = true;
       postgresql.enable = true;
       sqlite.enable = true;
+      bluetooth.enable = true;
     };
     theme.active = "alucard";
   };

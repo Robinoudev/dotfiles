@@ -9,6 +9,9 @@ in {
   };
 
   config = mkIf cfg.enable {
+    user.packages = with pkgs; [
+      ungoogled-chromium
+    ];
     programs.chromium = {
       enable = true;
       extensions = [
