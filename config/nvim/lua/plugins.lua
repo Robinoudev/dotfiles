@@ -64,4 +64,8 @@ return require('packer').startup(function()
     -- basic utils
     use 'windwp/nvim-autopairs'
     use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+
+
+    -- tmux
+    use 'christoomey/vim-tmux-navigator'
 end)
