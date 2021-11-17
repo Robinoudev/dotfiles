@@ -7,8 +7,8 @@ nnoremap <leader>q :q<CR>
 nnoremap <silent> <esc> :noh<cr>
 
 " Turn on 'verymagic' mode when searching
-nnoremap / /\v
-nnoremap ? ?\v
+" nnoremap / /\v
+" nnoremap ? ?\v
 
 " Folds and splits
 let g:tmux_navigator_no_mappings = 1
