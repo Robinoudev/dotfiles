@@ -1,0 +1,4 @@
+#!/usr/bin/env cached-nix-shell
+#! nix-shell -p sumneko-lua-language-server
+
+lua-language-server

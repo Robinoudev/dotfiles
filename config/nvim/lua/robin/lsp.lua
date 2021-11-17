@@ -78,20 +78,7 @@ require('lspconfig').vimls.setup {
 require('lspconfig').rust_analyzer.setup {
     capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 }
-
--- Get system for lua
--- local system_name
--- if vim.fn.has("mac") == 1 then
---     system_name = "macOS"
--- elseif vim.fn.has("unix") == 1 then
---     system_name = "Linux"
--- elseif vim.fn.has('win32') == 1 then
---     system_name = "Windows"
--- else
---     print("Unsupported system for sumneko")
--- end
-
 require('lspconfig').sumneko_lua.setup {
     capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-    cmd = { '/Users/robin/.local/programs/lua-language-server/bin/macOS/lua-language-server'}
+    cmd = { 'lua-language-server' }
 }
