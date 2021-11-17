@@ -40,6 +40,7 @@ in {
       user.packages = with pkgs; [
         unstable.dracula-theme
         paper-icon-theme # for rofi
+        capitaine-cursors
       ];
       fonts = {
         fonts = with pkgs; [

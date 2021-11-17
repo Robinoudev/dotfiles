@@ -48,13 +48,17 @@
 *.color240: #6272a4
 *.color241: #b6b6b2
 
+!! cursor
+!! TODO: set this relavant to hidpi
+Xcursor.size: 32
+Xcursor.theme: Paper
 
 !! general
-st.scratch.font: JetBrainsMono:pixelsize=16
+st.scratch.font: JetBrainsMono:pixelsize=20
 
 
 !! xst
-st.font: JetBrainsMono:pixelsize=12
+st.font: JetBrainsMono:pixelsize=20
 st.borderpx: 10
 
 

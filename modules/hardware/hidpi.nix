@@ -21,6 +21,6 @@ in {
     services.xserver.dpi = 146;
 
     # have a bigger cursor for hidpi
-    environment.variables.XCURSOR_SIZE = "64";
+    environment.variables.XCURSOR_SIZE = "32";
   };
 }

@@ -46,6 +46,7 @@ in {
      })
 
     {
+      # TODO: set curser-size relevant to hidpi
       home.configFile = {
         # GTK
         "gtk-3.0/settings.ini".text = ''
@@ -56,6 +57,7 @@ in {
             ''gtk-icon-theme-name=${cfg.gtk.iconTheme}''}
           ${optionalString (cfg.gtk.cursorTheme != "")
             ''gtk-cursor-theme-name=${cfg.gtk.cursorTheme}''}
+          gtk-cursor-theme-size=32
           gtk-fallback-icon-theme=gnome
           gtk-application-prefer-dark-theme=true
           gtk-xft-hinting=1
@@ -68,6 +70,9 @@ in {
             ''gtk-theme-name="${cfg.gtk.theme}"''}
           ${optionalString (cfg.gtk.iconTheme != "")
             ''gtk-icon-theme-name="${cfg.gtk.iconTheme}"''}
+          ${optionalString (cfg.gtk.cursorTheme != "")
+            ''gtk-cursor-theme-name=${cfg.gtk.cursorTheme}''}
+          gtk-cursor-theme-size=32
           gtk-font-name="Sans 10"
         '';
         # QT4/5 global theme
