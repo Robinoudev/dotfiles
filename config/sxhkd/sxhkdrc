@@ -121,11 +121,11 @@ XF86MonBrightnessDown
   light -U 5
 
 XF86AudioMute
-  amixer -q set Master toggle
+  pamixer -t
 XF86AudioLowerVolume
-  amixer -q set Master 10%- unmute
+  pamixer -d 10 -u
 XF86AudioRaiseVolume
-  amixer -q set Master 10%+ unmute
+  pamixer -i 10 -u
 
 XF86Audio{Play,Pause}
   spt-send toggle

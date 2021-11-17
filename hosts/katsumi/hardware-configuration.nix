@@ -57,7 +57,10 @@
     pavucontrol
     pamixer
     openrazer-daemon
+    solaar
   ];
+
+  hardware.logitech.wireless.enable = true;
 
   fileSystems."/" =
     { device = "/dev/disk/by-label/nixos";
