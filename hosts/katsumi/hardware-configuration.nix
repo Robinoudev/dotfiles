@@ -43,19 +43,7 @@
 
   services.xserver.xrandrHeads = ["DP-4"];
 
-  # audio
-  services = {
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-    };
-  };
-
   user.packages = with pkgs; [
-    pavucontrol
-    pamixer
     openrazer-daemon
     solaar
   ];

@@ -37,6 +37,9 @@
       elixir.enable = true;
       rust.enable = true;
     };
+    hardware = {
+      audio.enable = true;
+    };
     shell = {
       vaultwarden.enable = true;
       tmux.enable = true;

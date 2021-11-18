@@ -55,6 +55,7 @@
     };
     hardware = {
       hidpi.enable = true;
+      audio.enable = true;
     };
     theme.active = "alucard";
   };

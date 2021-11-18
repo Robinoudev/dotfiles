@@ -35,7 +35,7 @@
   programs.light.enable = true;
   user.extraGroups = [ "video" ];
 
-  services.xserver.dpi = 96;
+  services.xserver.dpi = 92;
 
   fileSystems."/" =
     { device = "/dev/disk/by-label/nixos";
