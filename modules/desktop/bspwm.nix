@@ -17,7 +17,7 @@ in {
 
     environment.systemPackages = with pkgs; [
       lightdm
-      /* dunst */
+      dunst
       libnotify
       (polybar.override {
         pulseSupport = true;
@@ -30,37 +30,25 @@ in {
       redshift.enable = true;
       xserver = {
         enable = true;
-        desktopManager = {
-          xfce = {
-            enable = true;
-            noDesktop = true;
-            enableXfwm = false;
-          };
+        displayManager = {
+          defaultSession = "none+bspwm";
+          lightdm.enable = true;
+          lightdm.greeters.mini.enable = true;
         };
         windowManager.bspwm.enable = true;
-        displayManager.defaultSession = "xfce+bspwm";
       };
-      /* xserver = { */
-      /*   enable = true; */
-      /*   displayManager = { */
-      /*     defaultSession = "none+bspwm"; */
-      /*     lightdm.enable = true; */
-      /*     lightdm.greeters.mini.enable = true; */
-      /*   }; */
-      /*   windowManager.bspwm.enable = true; */
-      /* }; */
     };
 
     systemd.user.services.unclutter.enable = true;
 
-    /* systemd.user.services."dunst" = { */
-    /*   enable = true; */
-    /*   description = ""; */
-    /*   wantedBy = [ "default.target" ]; */
-    /*   serviceConfig.Restart = "always"; */
-    /*   serviceConfig.RestartSec = 2; */
-    /*   serviceConfig.ExecStart = "${pkgs.dunst}/bin/dunst"; */
-    /* }; */
+    systemd.user.services."dunst" = {
+      enable = true;
+      description = "";
+      wantedBy = [ "default.target" ];
+      serviceConfig.Restart = "always";
+      serviceConfig.RestartSec = 2;
+      serviceConfig.ExecStart = "${pkgs.dunst}/bin/dunst";
+    };
 
     # link recursively so other modules can link files in their folders
     home.configFile = {

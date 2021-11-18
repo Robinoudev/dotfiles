@@ -10,7 +10,7 @@ in {
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
-      ungoogled-chromium
+      chromium
     ];
     programs.chromium = {
       enable = true;

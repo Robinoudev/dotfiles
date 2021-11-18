@@ -10,6 +10,18 @@ in {
   };
 
   config = mkIf cfg.enable {
+    /* xserver = { */
+    /*   enable = true; */
+    /*   desktopManager = { */
+    /*     xfce = { */
+    /*       enable = true; */
+    /*       noDesktop = true; */
+    /*       enableXfwm = false; */
+    /*     }; */
+    /*   }; */
+    /*   windowManager.bspwm.enable = true; */
+    /*   displayManager.defaultSession = "xfce+bspwm"; */
+    /* }; */
     services.xserver = {
       enable = true;
       desktopManager = {
