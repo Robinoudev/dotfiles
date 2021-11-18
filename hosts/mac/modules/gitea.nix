@@ -13,12 +13,12 @@
       mailer = {
         ENABLED = true;
         FROM = "git@oudevrielink.net";
-        HOST = "smtp.fastmail.com:587";
-        USER = "robin@oudevrielink.net";
+        HOST = "smtp.sendgrid.net:587";
+        USER = "apikey";
         MAILER_TYPE = "smtp";
       };
     };
-    mailerPasswordFile = config.age.secrets.gitea-smtp-env.path;
+    mailerPasswordFile = config.age.secrets.gitea-smtp-secret.path;
   };
 
   services.nginx.virtualHosts."git.oudevrielink.net" = {
