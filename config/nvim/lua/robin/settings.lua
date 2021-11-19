@@ -1,106 +1,142 @@
-local scopes = {o = vim.o, b = vim.bo, w = vim.wo}
+-------------------------------------------------------------------------------
+-- Options {{{1 ---------------------------------------------------------------
+-------------------------------------------------------------------------------
 
+local vim = vim
+local root = vim.env.USER == 'root'
+local home = vim.env.HOME
+local config = home .. "/.config/nvim"
 
-local function opt(scope, key, value)
-    scopes[scope][key] = value
-    if scope ~= "o" then
-        scopes["o"][key] = value
-    end
+vim.opt.number         = true                              -- line numbers
+vim.opt.relativenumber = true                              -- numbers relative to current line
+vim.opt.hidden         = true                              -- make it possible to hide unsaved buffers
+vim.opt.shiftwidth     = 2
+vim.opt.tabstop        = 2                                 -- a tab counts for 2 spaces
+vim.opt.shiftround     = false                             -- don't always indent by multiple of shiftwidth
+vim.opt.expandtab      = true                              -- convert tabs to spaces
+vim.opt.autoindent     = true                              -- copy indent when starting a new line from previous line
+vim.opt.splitbelow     = true                              -- split new files under cursor
+vim.opt.splitright     = true                              -- split new files to the right of cursor
+vim.opt.wrap           = false                             -- don't wrap lines that exceed the window view
+vim.opt.cursorline     = false                             -- highlight the line of the cursor
+vim.opt.scrolloff      = 3                                 -- minimal no. of screen lines to keep above or under cursor
+vim.opt.sidescroll     = 0                                 -- sidescroll in jumps because terminals are slow
+vim.opt.sidescrolloff  = 3                                 -- same as scrolloff, but for columns
+vim.opt.textwidth      = 80                                -- maximum width of text in insert mode for comments
+vim.opt.colorcolumn    = "+1"                              -- display a visible color column at the end of the textwidth
+vim.opt.showbreak      = '↳ '                              -- DOWNWARDS ARROW WITH TIP RIGHTWARDS (U+21B3, UTF-8: E2 86 B3)
+vim.opt.showcmd        = false                             -- don't show extra info at end of command line
+vim.opt.smarttab       = true                              -- <tab>/<BS> indent/dedent in leading whitespace
+vim.opt.ignorecase     = true                              -- ignore case of normal letters
+vim.opt.smartcase      = true                              -- only ignore the above when pattern has lower case letters only
+vim.opt.incsearch      = true                              -- when typing a search, show where the pattern matches
+vim.opt.errorbells     = false                             -- no error bells when hitting esc in normal mode etc.
+vim.opt.list           = true                              -- show all characters defined in `listchars`
+vim.opt.modelines      = 5                                 -- scan this many lines looking for modeline
+vim.opt.joinspaces     = false                             -- don't autoinsert two spaces after '.', '?', '!' for join command
+vim.opt.wildmode       = "longest:full,full"
+vim.opt.clipboard      = "unnamedplus"                     -- Add the system clipboard to vim
+vim.opt.laststatus     = 2                                 -- always show status line
+vim.opt.lazyredraw     = true                              -- don't bother updating screen during macro playback
+vim.opt.switchbuf      = "usetab"                          -- when switching to a buffer in another tab, jump to that tab
+vim.opt.signcolumn     = "yes:1"                           -- always show a signcolumn on the left
+vim.opt.inccommand     = "split"                           -- show preview of in preview window (eg. %s/../../g)
+vim.opt.pumblend       = 25                                -- give the popup window transparency
+vim.opt.termguicolors  = true
+vim.opt.numberwidth    = 2
+vim.opt.mouse          = "a"
+vim.opt.cmdheight      = 1
+vim.opt.spellcapcheck  = ""                                -- don't check for capital letters at start of sentence
+vim.opt.synmaxcol      = 200                               -- don't bother syntax highlighting long lines
+vim.opt.formatoptions  = vim.opt.formatoptions + 'j'       -- remove comment leader when joining comment lines
+vim.opt.formatoptions  = vim.opt.formatoptions + 'n'       -- smart auto-indenting inside numbered lists
+
+vim.opt.directory      = config .. "/nvim/swap//"          -- keep swap files out of the way
+vim.opt.directory      = vim.opt.directory + "."           -- fallback
+vim.opt.backupdir      = config .. '/backup//'             -- keep backup files out of the way (ie. if 'backup' is ever set)
+vim.opt.backupdir      = vim.opt.backupdir + '.'           -- fallback
+vim.opt.backupskip     = vim.opt.backupskip + '*.re,*.rei' -- prevent bsb's watch mode from getting confused (if 'backup' is ever set)
+
+if root then
+  vim.opt.undofile = false -- don't create root-owned files
+else
+  vim.opt.undodir  = config .. '/undo//'   -- keep undo files out of the way
+  vim.opt.undodir  = vim.opt.undodir + '.' -- fallback
+  vim.opt.undofile = true                  -- actually use undo files
 end
 
+vim.opt.updatetime  = 2000                                  -- CursorHold interval
+vim.opt.updatecount = 0                                     -- update swapfiles every 80 typed chars
+vim.opt.viewdir     = config .. '/view'                     -- where to store files for :mkview
+vim.opt.viewoptions = 'cursor,folds'                        -- save/restore just these (with `:{mk,load}view`)
+vim.opt.virtualedit = 'block'                               -- allow cursor to move where there is no text in visual block mode
+vim.opt.visualbell  = true                                  -- stop annoying beeping for non-error errors
+vim.opt.whichwrap   = 'b,h,l,s,<,>,[,],~'                   -- allow <BS>/h/l/<Left>/<Right>/<Space>, ~ to cross line boundaries
+vim.opt.wildcharm   = 26                                    -- ('<C-z>') substitute for 'wildchar' (<Tab>) in macros
+vim.opt.wildignore  = vim.opt.wildignore + '*.o,*.rej,*.so' -- patterns to ignore during file-navigation
+vim.opt.writebackup = false                                 -- don't write backup files
+vim.opt.swapfile    = false                                 -- don't create swap files
 
-opt("w", "number", true)              -- Line numbers
-opt("w", "relativenumber", true)      -- Numbers relative to current line
-opt("o", "hidden", true)              -- Make it possible to hide unsaved buffers
-opt("b", "shiftwidth", 2 )
-opt("b", "tabstop", 2 )               -- A tab counts for 4 spaces
-opt("b", "expandtab", true)           -- Convert tabs to spaces
-opt("o", "autoindent", true)          -- copy indent when starting a new line from previous line
-opt("o", "splitbelow", true)          -- Split new files under cursor
-opt("o", "splitright", true)          -- Split new files to the right of cursor
-opt("w", "wrap", false)               -- Don't wrap lines that exceed the window view
-opt("o", "cursorline", false)         -- Highlight the line of the cursor
-opt("o", "scrolloff", 6)              -- Minimal no. of screen lines to keep above or
-                                      -- under cursor
+vim.opt.shortmess     = vim.opt.shortmess + 'A' -- ignore annoying swapfile messages
+vim.opt.shortmess     = vim.opt.shortmess + 'I' -- no splash screen
+vim.opt.shortmess     = vim.opt.shortmess + 'O' -- file-read message overwrites previous
+vim.opt.shortmess     = vim.opt.shortmess + 'T' -- truncate non-file messages in middle
+vim.opt.shortmess     = vim.opt.shortmess + 'W' -- don't echo "[w]"/"[written]" when writing
+vim.opt.shortmess     = vim.opt.shortmess + 'a' -- use abbreviations in messages eg. `[RO]` instead of `[readonly]`
+vim.opt.shortmess     = vim.opt.shortmess + 'c' -- completion messages
+vim.opt.shortmess     = vim.opt.shortmess + 'o' -- overwrite file-written messages
+vim.opt.shortmess     = vim.opt.shortmess + 't' -- truncate file messages at start
 
-opt("o", "sidescroll", 0)             -- sidescroll in jumps because terminals are slow
-opt("o", "sidescrolloff", 3)          -- same as scrolloff, but for columns
-opt("o", "textwidth", 80)             -- maximum width of text in insert mode for comments
--- opt("o", "colorcolumn", "+1")         -- display a visible color column at the end of the textwidth
-opt("o", "updatetime", 1000)          -- no. of ms of inactivity it takes to update swap
 
-local dir = os.getenv("HOME")
--- don't create root owned files
-if os.getenv("SUDO_USER") or os.getenv("DOAS_USER") then
-    opt("o", "backup", false)
-    opt("o", "writebackup", false)
-    opt("o", "swapfile", false)
-    opt("o", "undofile", false)
-else -- set correct dirs for files
-    -- opt("o", "backupdir", backupdir)
-    opt("o", "directory", dir .. "/.vim/tmp/swap//")
-    opt("o", "undofile", true)
-    opt("o", "undodir", dir .. "/.vim/tmp/undodir//")
+
+if root then
+  vim.opt.shada     = "" -- Don't create root-owned files.
+  vim.opt.shadafile = "NONE"
+else
+  -- Defaults:
+  --   Neovim: !,'100,<50,s10,h
+  --
+  -- - ! save/restore global variables (only all-uppercase variables)
+  -- - '100 save/restore marks from last 100 files
+  -- - <50 save/restore 50 lines from each register
+  -- - s10 max item size 10KB
+  -- - h do not save/restore 'hlsearch' setting
+  --
+  -- Our overrides:
+  -- - '0 store marks for 0 files
+  -- - <0 don't save registers
+  -- - f0 don't store file marks
+  -- - n: store in ~/.config/nvim/
+  --
+  vim.opt.shada = "'0,<0,f0,n~/.config/nvim/shada"
 end
+vim.opt.listchars      = {
+  nbsp                 = '⦸',                              -- CIRCLED REVERSE SOLIDUS (U+29B8, UTF-8: E2 A6 B8)
+  extends              = '»',                              -- RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00BB, UTF-8: C2 BB)
+  precedes             = '«',                              -- LEFT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00AB, UTF-8: C2 AB)
+  tab                  = '▷⋯',                             -- WHITE RIGHT-POINTING TRIANGLE (U+25B7, UTF-8: E2 96 B7) + MIDLINE HORIZONTAL ELLIPSIS (U+22EF, UTF-8: E2 8B AF)
+  trail                = '•',                              -- BULLET (U+2022, UTF-8: E2 80 A2)
+}
+vim.opt.fillchars      = {
+  diff                 = '∙',                              -- BULLET OPERATOR (U+2219, UTF-8: E2 88 99)
+  eob                  = ' ',                              -- NO-BREAK SPACE (U+00A0, UTF-8: C2 A0) to suppress ~ at EndOfBuffer
+  fold                 = '·',                              -- MIDDLE DOT (U+00B7, UTF-8: C2 B7)
+  vert                 = '┃',                              -- BOX DRAWINGS HEAVY VERTICAL (U+2503, UTF-8: E2 94 83)
+}
 
-opt("o", "path", scopes.o.path .. "**")           -- extend path into all subdirectories
+-------------------------------------------------------------------------------
+-- Globals {{{1 ---------------------------------------------------------------
+-------------------------------------------------------------------------------
 
-local shortmess = scopes.o.shortmess
-shortmess = shortmess .. "c"                   --  remove messages from ins-completion-menu
-shortmess = shortmess .. "A"                   --  remove swap file messages
-shortmess = shortmess .. "I"                   --  remove intro screen
-shortmess = shortmess .. "O"                   --  file-read message overwrites previous
-shortmess = shortmess .. "T"                   --  truncate non-file messages in middle
-shortmess = shortmess .. "W"                   --  don't echo "[w]"/"[written]" when writing
-shortmess = shortmess .. "a"                   --  use abbreviations in messages eg. `[RO]` instead of `[readonly]`
-shortmess = shortmess .. "o"                   --  overwrite file-written messages
-shortmess = shortmess .. "t"                   --  truncate file messages at start
-opt("o", "shortmess", shortmess)
-
-opt("o", "ignorecase", true)                   -- ignore case of normal letters
-opt("o", "smartcase", true)                    -- only ignore the above when pattern has lower case letters only
-opt("o", "incsearch", true)                    -- when typing a search, show where the pattern matches
-opt("o", "errorbells", false)                 -- no error bells when hitting esc in normal mode etc.
-
-opt("o", "list", true)                         -- show all characters defined in `listchars`
-vim.cmd "set listchars=nbsp:⦸"                 -- CIRCLED REVERSE SOLIDUS (U+29B8, UTF-8: E2 A6 B8)
-vim.cmd "set listchars+=tab:▷┅"                -- WHITE RIGHT-POINTING TRIANGLE (U+25B7, UTF-8: E2 96 B7)
-                                               -- " + BOX DRAWINGS HEAVY TRIPLE DASH HORIZONTAL (U+2505, UTF-8: E2 94 85)
-vim.cmd "set listchars+=extends:»"             -- RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00BB, UTF-8: C2 BB)
-vim.cmd "set listchars+=precedes:«"            -- LEFT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00AB, UTF-8: C2 AB)
-vim.cmd "set listchars+=trail:•"               -- BULLET (U+2022, UTF-8: E2 80 A2)
-
-opt("o", "modelines", 5)                       -- scan this many lines looking for modeline
-opt("o", "joinspaces", false)                 -- don't autoinsert two spaces after '.', '?', '!' for join command
-
-opt("o", "wildmode", "longest:full,full")
-
-
-opt("o", "clipboard", "unnamedplus")           -- Add the system clipboard to vim
-opt("o", "laststatus", 2)                      -- always show status line
-opt("o", "lazyredraw", true)                   -- don't bother updating screen during macro playback
-
-opt("o", "switchbuf", "usetab")                -- when switching to a buffer in another tab, jump to that tab
-opt("o", "wildignore", "*.o,*.rej")            -- patterns to ignore during file-navigation
-opt("w", "signcolumn", "yes:1")                -- always show a signcolumn on the left
-opt("o", "inccommand", "split")                -- show preview of in preview window (eg. %s/../../g)
-
-opt("o", "shada", "!,'1000,<50,s10,h")         --  make vim remember histories of previous sessions
-opt("o", "fillchars", "eob:~,fold:·,diff:∙")
-opt("o", "pumblend", 25)                       -- give the popup window transparency
-
-opt("o", "termguicolors", true)
-opt("o", "numberwidth", 2)
-opt("o", "mouse", "a")
-opt("o", "cmdheight", 1)
-
-vim.cmd "set fillchars+=vert:│"
-vim.cmd "let g:vsnip_snippet_dir = \"/etc/nixos/config/nvim/snippets\""
+vim.g.mapleader = ' '
+vim.g.maplocalleader = '\\'
 
 -- COLORSCHEME
 vim.g.material_style = "deep ocean"
+vim.g.tokyonight_style = "night"
 -- vim.cmd "colorscheme codesmell_dark"
-vim.cmd "colorscheme material"
+-- vim.cmd "colorscheme material"
+vim.cmd[[colorscheme tokyonight]]
 -- require('material').set()
 -- vim.g.modus_moody_enable
 
@@ -117,3 +153,5 @@ function M.has_width_gt(cols)
 end
 
 return M
+
+-- vim: foldmethod=marker
