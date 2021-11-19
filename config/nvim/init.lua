@@ -1,3 +1,5 @@
+require'robin'
+
 -------------------------------------------------------------------------------
 -- Options {{{1 ---------------------------------------------------------------
 -------------------------------------------------------------------------------
@@ -65,6 +67,7 @@ else
   vim.opt.undofile = true                  -- actually use undo files
 end
 
+
 vim.opt.updatetime  = 2000                                  -- CursorHold interval
 vim.opt.updatecount = 0                                     -- update swapfiles every 80 typed chars
 vim.opt.viewdir     = config .. '/view'                     -- where to store files for :mkview
@@ -108,7 +111,7 @@ else
   -- - f0 don't store file marks
   -- - n: store in ~/.config/nvim/
   --
-  vim.opt.shada = "'0,<0,f0,n~/.config/nvim/shada"
+  vim.opt.shada = "'0,<0,f0,n" .. config .. "shada"
 end
 vim.opt.listchars      = {
   nbsp                 = '⦸',                              -- CIRCLED REVERSE SOLIDUS (U+29B8, UTF-8: E2 A6 B8)
@@ -133,25 +136,47 @@ vim.g.maplocalleader = '\\'
 
 -- COLORSCHEME
 vim.g.material_style = "deep ocean"
-vim.g.tokyonight_style = "night"
+-- vim.g.tokyonight_style = "night"
 -- vim.cmd "colorscheme codesmell_dark"
--- vim.cmd "colorscheme material"
-vim.cmd[[colorscheme tokyonight]]
+vim.cmd "colorscheme material"
+-- vim.cmd[[colorscheme tokyonight]]
 -- require('material').set()
 -- vim.g.modus_moody_enable
 
-local M = {}
 
-function M.is_buffer_empty()
-    -- Check whether the current buffer is empty
-    return vim.fn.empty(vim.fn.expand("%:t")) == 1
-end
+-- TODO: Refactor this to lua code
+vim.cmd [[
+filetype indent plugin on
+syntax on
 
-function M.has_width_gt(cols)
-    -- Check if the windows width is greater than a given number of columns
-    return vim.fn.winwidth(0) / 2 > cols
-end
+lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
 
-return M
+if executable('rg')
+    let g:rg_derive_root='true'
+endif
+
+let loaded_matchparen = 1
+
+augroup highlight_yank
+    autocmd!
+    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 40})
+augroup END
+
+" JUST WRITE
+com! W w
+
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+
+augroup TRIM_WHITESPACE
+    autocmd!
+    autocmd BufWritePre * :call TrimWhitespace()
+    autocmd BufEnter,BufWinEnter,TabEnter *.rs :lua require'lsp_extensions'.inlay_hints{}
+augroup END
+]]
 
 -- vim: foldmethod=marker
+
