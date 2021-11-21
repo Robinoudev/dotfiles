@@ -135,10 +135,10 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
 
 -- COLORSCHEME
-vim.g.material_style = "deep ocean"
+-- vim.g.material_style = "deep ocean"
 -- vim.g.tokyonight_style = "night"
 -- vim.cmd "colorscheme codesmell_dark"
-vim.cmd "colorscheme material"
+vim.cmd "colorscheme base16-default-dark"
 -- vim.cmd[[colorscheme tokyonight]]
 -- require('material').set()
 -- vim.g.modus_moody_enable

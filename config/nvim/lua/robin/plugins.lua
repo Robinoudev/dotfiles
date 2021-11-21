@@ -24,6 +24,13 @@ return require('packer').startup(function()
     use 'lifepillar/vim-solarized8'
     use 'whatsthatsmell/codesmell_dark.vim'
     use 'marko-cerovac/material.nvim'
+    use 'wincent/base16-nvim'
+
+    -- commandt
+    use {
+      'wincent/command-t',
+      run = 'make clean; ruby extconf.rb && make '
+    }
 
     -- Telescope
     use 'nvim-lua/plenary.nvim'
