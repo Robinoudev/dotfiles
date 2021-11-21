@@ -39,8 +39,8 @@
 
   fileSystems."/" =
     { device = "/dev/disk/by-label/nixos";
-      fsType = "btrfs";
-      options = ["subvol=nixos"];
+      fsType = "ext4";
+      options = ["noatime"];
     };
 
   fileSystems."/boot" =
