@@ -51,7 +51,7 @@ in {
           font-awesome-ttf
           (iosevka-bin.override { variant = "aile"; })
           (iosevka-bin.override { variant = "etoile"; })
-          (nerdfonts.override { fonts = [ "Iosevka" ]; })
+          (nerdfonts.override { fonts = [ "Iosevka" "DroidSansMono" ]; })
         ];
         fontconfig.defaultFonts = {
           monospace = [ "Iosevka Nerd Font" ];

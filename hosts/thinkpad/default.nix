@@ -69,6 +69,8 @@
   networking.interfaces.wlp3s0.useDHCP = true;
   networking.networkmanager.enable = true;
 
+  environment.variables.XCURSOR_SIZE = "16";
+
   programs.ssh.startAgent = true;
   services.openssh.startWhenNeeded = true;
 
