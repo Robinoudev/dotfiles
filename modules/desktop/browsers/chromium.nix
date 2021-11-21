@@ -21,6 +21,7 @@ in {
         "pkehgijcmpdhfbdbbnkijodmdjhbjlgp" # Privacy Badger
         "njdfdhgcmkocbgbhcioffdbicglldapd" # LocalCDN
         "ckkdlimhmcjmikdlpkmbgfkaikojcbjk" # Markdown Viewer
+        "cjpalhdlnbpafiamejdnhcphjbkeiagm" # ublock origin
       ];
     };
   };
