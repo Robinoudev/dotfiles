@@ -21,3 +21,7 @@ bindkey '^f' autosuggest-accept
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^x^x' edit-command-line
+
+# have ctrs + left/right move over a word
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
