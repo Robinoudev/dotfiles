@@ -1,6 +1,6 @@
 [user]
   name = Robin Oude Vrielink
-  email = robin@oudevrielink.xyz
+  email = robin@oudevrielink.net
   signingkey = 1FF00F297D2040EF
 
 [commit]
@@ -19,7 +19,6 @@
   autoStash = true
 
 [core]
-  ; pager = delta
   editor = nvim
 
 [alias]
@@ -28,16 +27,6 @@
   st = status
   ch = checkout
   patch = add -p
-
-[delta]
-  line-numbers = true
-  syntax-theme = gruvbox
-  side-by-side = true
-
-  file-modified-label = modified:
-
-[interactive]
-  diffFilter = delta --color-only
 
 [diff]
   submodule = log
@@ -51,3 +40,5 @@
     insteadOf = gh:
 [url "git@gitlab.com:"]
     insteadOf = gl:
+[url "git@oudevrielink.com:"]
+    insteadOf = g:
