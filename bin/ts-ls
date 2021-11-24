@@ -1,0 +1,4 @@
+#!/usr/bin/env cached-nix-shell
+#! nix-shell -p nodePackages.typescript-language-server
+
+typescript-language-server --stdio

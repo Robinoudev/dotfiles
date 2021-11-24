@@ -11,6 +11,8 @@ return require('packer').startup(function()
     use 'tpope/vim-commentary'
     use 'justinmk/vim-dirvish'
 
+    use 'tomtom/tcomment_vim'
+
     -- Neovim Tree shitter
     use {
       "nvim-treesitter/nvim-treesitter",
@@ -27,10 +29,7 @@ return require('packer').startup(function()
     use 'wincent/base16-nvim'
 
     -- commandt
-    use {
-      'wincent/command-t',
-      run = 'make clean; ruby extconf.rb && make '
-    }
+    use 'wincent/command-t'
 
     -- Telescope
     use 'nvim-lua/plenary.nvim'
@@ -72,6 +71,7 @@ return require('packer').startup(function()
     use 'windwp/nvim-autopairs'
     use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
     use 'wincent/loupe'
+    use 'ThePrimeagen/harpoon'
 
     -- tmux
     use 'christoomey/vim-tmux-navigator'

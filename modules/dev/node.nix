@@ -12,6 +12,7 @@ in {
     user.packages = with pkgs; [
       nodejs
       yarn
+      nodePackages.typescript-language-server
     ];
 
     env.NPM_CONFIG_USERCONFIG = "$XDG_CONFIG_HOME/npm/config";
