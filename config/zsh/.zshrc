@@ -2,20 +2,31 @@ autoload -U colors && colors
 autoload -Uz compinit && compinit -u -d $ZSH_CACHE/zcompdump
 autoload -U promptinit; promptinit
 
-[ -d "$ZGEN_DIR" ] || git clone https://github.com/tarjoilija/zgen "$ZGEN_DIR"
-source $ZGEN_SOURCE
-if ! zgen saved; then
-  echo "Initializing zgen"
-  zgen load hlissner/zsh-autopair autopair.zsh
-  zgen load zsh-users/zsh-history-substring-search
-  zgen load zdharma-continuum/history-search-multi-word
-  zgen load zsh-users/zsh-completions src
-  zgen load junegunn/fzf shell
-  zgen load zsh-users/zsh-autosuggestions
-  [ -z "$SSH_CONNECTION" ] && zgen load zdharma-continuum/fast-syntax-highlighting
-  zgen save
-fi
+# [ -d "$ZGEN_DIR" ] || git clone https://github.com/tarjoilija/zgen "$ZGEN_DIR"
+# source $ZGEN_SOURCE
+# if ! zgen saved; then
+#   # echo "Initializing zgen"
+#   # zgen load hlissner/zsh-autopair autopair.zsh
+#   # zgen load zsh-users/zsh-history-substring-search
+#   # zgen load zdharma-continuum/history-search-multi-word
+#   # zgen load zsh-users/zsh-completions src
+#   # zgen load junegunn/fzf shell
+#   # zgen load zsh-users/zsh-autosuggestions
+#   # [ -z "$SSH_CONNECTION" ] && zgen load zdharma-continuum/fast-syntax-highlighting
+#   zgen save
+# fi
 
+# plugins
+source $ZDOTDIR/zsh-autopair/zsh-autopair.zsh
+source $ZDOTDIR/zsh-history-substring-search/zsh-history-substring-search.zsh
+source $ZDOTDIR/zsh-history-search-multi-word/zsh-history-search-multi-word.plugin.zsh
+source $ZDOTDIR/zsh-completions/zsh-completions.plugin.zsh
+source $ZDOTDIR/fzf/shell/completion.zsh
+source $ZDOTDIR/fzf/shell/key-bindings.zsh
+source $ZDOTDIR/zsh-autosuggestions/zsh-autosuggestions.zsh
+[ -z "$SSH_CONNECTION" ] && source $ZDOTDIR/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+
+# config stuff
 source $ZDOTDIR/config.zsh
 source $ZDOTDIR/keybinds.zsh
 source $ZDOTDIR/completion.zsh
