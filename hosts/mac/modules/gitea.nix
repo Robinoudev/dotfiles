@@ -4,7 +4,7 @@
   modules.services.gitea.enable = true;
 
   services.gitea = {
-    appName = "GITEA";
+    appName = "Gitea";
     domain = "oudevrielink.net";
     rootUrl = "https://git.oudevrielink.net/";
     disableRegistration = true;
@@ -12,7 +12,7 @@
       server.SSH_DOMAIN = "oudevrielink.net";
       mailer = {
         ENABLED = true;
-        FROM = "git@oudevrielink.net";
+        FROM = "noreply@oudevrielink.net";
         HOST = "smtp.sendgrid.net:587";
         USER = "apikey";
         MAILER_TYPE = "smtp";

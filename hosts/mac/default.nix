@@ -10,6 +10,7 @@ with lib.my;
 
     ./modules/vaultwarden.nix
     ./modules/gitea.nix
+    ./modules/backup.nix
   ];
 
   modules = {
