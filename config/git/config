@@ -2,40 +2,32 @@
   name = Robin Oude Vrielink
   email = robin@oudevrielink.net
   signingkey = 1FF00F297D2040EF
-
 [commit]
   gpgsign = true
-
 [github]
   user = robinoudev
-
 [gitlab]
   user = robinoudev
-
 [pull]
   rebase = true
-
 [rebase]
   autoStash = true
-
+[rerere]
+  enabled = true
 [core]
   editor = nvim
-
 [alias]
   fa = fetch --all --prune
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
   st = status
   ch = checkout
   patch = add -p
-
 [diff]
   submodule = log
-
 [diff "lisp"]
   xfuncname = "^(((;;;+ )|\\(|([ \t]+\\(((cl-|el-patch-)?def(un|var|macro|method|custom)|gb/))).*)$"
 [diff "org"]
   xfuncname = "^(\\*+ +.*)$"
-
 [url "git@github.com:"]
     insteadOf = gh:
 [url "git@gitlab.com:"]
