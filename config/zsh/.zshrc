@@ -17,12 +17,12 @@ autoload -U promptinit; promptinit
 # fi
 
 # plugins
-source $ZDOTDIR/zsh-autopair/zsh-autopair.zsh
+source $ZDOTDIR/zsh-autopair/autopair.zsh
 source $ZDOTDIR/zsh-history-substring-search/zsh-history-substring-search.zsh
-source $ZDOTDIR/zsh-history-search-multi-word/zsh-history-search-multi-word.plugin.zsh
+source $ZDOTDIR/zsh-history-search-multi-word/history-search-multi-word.plugin.zsh
 source $ZDOTDIR/zsh-completions/zsh-completions.plugin.zsh
-source $ZDOTDIR/fzf/shell/completion.zsh
-source $ZDOTDIR/fzf/shell/key-bindings.zsh
+# source $ZDOTDIR/fzf/shell/completion.zsh
+# source $ZDOTDIR/fzf/shell/key-bindings.zsh
 source $ZDOTDIR/zsh-autosuggestions/zsh-autosuggestions.zsh
 [ -z "$SSH_CONNECTION" ] && source $ZDOTDIR/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 

@@ -10,6 +10,7 @@ return require('packer').startup(function()
     use 'tpope/vim-fugitive'
     use 'tpope/vim-commentary'
     use 'justinmk/vim-dirvish'
+    use 'wincent/vcs-jump'
 
     use 'tomtom/tcomment_vim'
 
