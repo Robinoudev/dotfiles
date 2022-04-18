@@ -2,7 +2,7 @@
 
 {
   # hardened kernel for better security
-  boot.kernelPackages = pkgs.linuxPackages_5_14_hardened;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_5_15_hardened;
 
   # Have nix perform automatic garbage collect
   nix.gc = {

@@ -1,8 +1,9 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   services.nextcloud = {
       enable = true;
+      package = pkgs.nextcloud23;
       hostName = "c.oudevrielink.net";
       https = true;
       autoUpdateApps.enable = true;
